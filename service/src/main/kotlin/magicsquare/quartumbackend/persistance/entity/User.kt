@@ -79,7 +79,7 @@ open class User {
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "user_subs_id")]
     )
-    open var users_subscriptions: MutableSet<User> = mutableSetOf()
+    open var users_subscribers: MutableSet<User> = mutableSetOf() //люди, которые подписаны на пользователя
 
     @ManyToMany
     @JoinTable(
@@ -87,5 +87,54 @@ open class User {
         joinColumns = [JoinColumn(name = "user_subs_id")],
         inverseJoinColumns = [JoinColumn(name = "user_id")]
     )
-    open var users: MutableSet<User> = mutableSetOf()
+    open var users_subscriptions: MutableSet<User> = mutableSetOf()// люди на кого подписан наш пользователь
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as User
+
+        if (id != other.id) return false
+        if (name != other.name) return false
+        if (surname != other.surname) return false
+        if (patronymic != other.patronymic) return false
+        if (birthday != other.birthday) return false
+        if (profileStatus != other.profileStatus) return false
+        if (aboutUser != other.aboutUser) return false
+        if (profilePhotoId != other.profilePhotoId) return false
+        if (phoneNumber != other.phoneNumber) return false
+        if (userCredentials != other.userCredentials) return false
+        if (roles != other.roles) return false
+        if (tags != other.tags) return false
+        if (articles != other.articles) return false
+        if (starred_articles != other.starred_articles) return false
+        if (articleRatings != other.articleRatings) return false
+        if (users_subscribers != other.users_subscribers) return false
+        if (users_subscriptions != other.users_subscriptions) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id?.hashCode() ?: 0
+        result = 31 * result + (name?.hashCode() ?: 0)
+        result = 31 * result + (surname?.hashCode() ?: 0)
+        result = 31 * result + (patronymic?.hashCode() ?: 0)
+        result = 31 * result + (birthday?.hashCode() ?: 0)
+        result = 31 * result + (profileStatus?.hashCode() ?: 0)
+        result = 31 * result + (aboutUser?.hashCode() ?: 0)
+        result = 31 * result + (profilePhotoId?.hashCode() ?: 0)
+        result = 31 * result + (phoneNumber?.hashCode() ?: 0)
+        result = 31 * result + userCredentials.hashCode()
+        result = 31 * result + roles.hashCode()
+        result = 31 * result + tags.hashCode()
+        result = 31 * result + articles.hashCode()
+        result = 31 * result + starred_articles.hashCode()
+        result = 31 * result + articleRatings.hashCode()
+        result = 31 * result + users_subscribers.hashCode()
+        result = 31 * result + users_subscriptions.hashCode()
+        return result
+    }
+
+
 }

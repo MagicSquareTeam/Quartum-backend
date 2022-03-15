@@ -15,5 +15,25 @@ open class Role {
 
     @ManyToMany(mappedBy = "roles")
     open var users: MutableSet<User> = mutableSetOf()
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Role
+
+        if (id != other.id) return false
+        if (roleName != other.roleName) return false
+        if (users != other.users) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id ?: 0
+        result = 31 * result + (roleName?.hashCode() ?: 0)
+        result = 31 * result + users.hashCode()
+        return result
+    }
+
 
 }
