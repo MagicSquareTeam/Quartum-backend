@@ -7,7 +7,6 @@ import java.time.Instant
 @Table(
     name = "\"user\"", indexes = [
         Index(name = "user_name_surname", columnList = "name, surname"),
-        Index(name = "user_phone_number_uindex", columnList = "phone_number", unique = true)
     ]
 )
 open class User {
@@ -40,7 +39,7 @@ open class User {
     @Column(name = "phone_number", length = 11)
     open var phoneNumber: String? = null
 
-    @OneToMany(mappedBy = "user")
+    @OneToOne(mappedBy = "user")
     open var userCredentials: MutableSet<UserCredential> = mutableSetOf()
 
     @ManyToMany

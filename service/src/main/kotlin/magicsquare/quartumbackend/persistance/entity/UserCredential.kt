@@ -11,7 +11,7 @@ open class UserCredential {
     open var id: Long? = null
 
     @MapsId
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     open var user: User? = null
 
