@@ -14,6 +14,9 @@ idea {
     }
 }
 
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
 allprojects{
     group = "magic-square"
     version = "0.0.2-SNAPSHOT"
