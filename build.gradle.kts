@@ -14,7 +14,10 @@ idea {
     }
 }
 
-task stage(dependsOn: ["build", "clean"])
+task stage() {
+    dependsOn clean, war
+}
+
 build.mustRunAfter clean
 
 task copyToLib(type: Copy) {
