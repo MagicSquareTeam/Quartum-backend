@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/quartum-backend.jar
+web: java --server.port=$PORT -jar build/libs/quartum-backend.jar
