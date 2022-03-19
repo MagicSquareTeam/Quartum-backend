@@ -15,7 +15,7 @@ idea {
 }
 
 task stage() {
-    dependsOn clean, war
+    dependsOn build, clean
 }
 
 build.mustRunAfter clean
