@@ -7,5 +7,7 @@ import org.springframework.boot.runApplication
 class QuartumBackendApplication
 
 fun main(args: Array<String>) {
+
+
     runApplication<QuartumBackendApplication>(*args)
 }

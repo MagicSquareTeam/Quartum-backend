@@ -28,6 +28,8 @@ dependencies {
 
     implementation(libs.bundles.spring.boot.starter)
     implementation(libs.bundles.kotlin)
+    implementation(libs.bundles.postgresql)
+    implementation(libs.mongo)
 
     testImplementation(libs.bundles.kotest)
 }
