@@ -40,7 +40,7 @@ open class User {
     open var phoneNumber: String? = null
 
     @OneToOne(mappedBy = "user")
-    open var userCredentials: MutableSet<UserCredential> = mutableSetOf()
+    open lateinit var userCredentials: UserCredential
 
     @ManyToMany
     @JoinTable(

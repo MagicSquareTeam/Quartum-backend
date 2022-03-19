@@ -21,7 +21,6 @@ open class Article {
     @Column(name = "name", nullable = false)
     open var name: String? = null
 
-    @Lob
     @Column(name = "text", nullable = false)
     open var text: String? = null
 

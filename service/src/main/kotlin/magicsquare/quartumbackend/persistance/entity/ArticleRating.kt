@@ -17,7 +17,7 @@ open class ArticleRating {
     open var article: Article? = null
 
     @Column(name = "rating", nullable = false)
-    open var rating: Int? = null
+    open var rating: Boolean? = null
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -36,7 +36,7 @@ open class ArticleRating {
         var result = id?.hashCode() ?: 0
         result = 31 * result + (ratedUser?.hashCode() ?: 0)
         result = 31 * result + (article?.hashCode() ?: 0)
-        result = 31 * result + (rating ?: 0)
+        result = 31 * result + (rating?.hashCode() ?: 0)
         return result
     }
 
