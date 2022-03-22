@@ -19,17 +19,14 @@ tasks.register("copyToLib", Copy){
     from(configurations.compile)
     into "$buildDir/libs"
 } 
+
 tasks.register("stage") {
-    dependsOn build, clean
+    dependsOn "copyToLib"
+    dependsOn "clean"
+    dependsOn "build"
+    tasks.findByName("build").mustRunAfter "clean"
 }
 
-tasks.register("cleanBuild") {
-    dependsOn 'clean'
-    dependsOn 'build'
-    tasks.findByName('build').mustRunAfter 'clean'
-}
-
-stage.dependsOn(copyToLib)
 
 gradle.taskGraph.whenReady {
   taskGraph ->
