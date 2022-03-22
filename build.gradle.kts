@@ -14,19 +14,19 @@ idea {
     }
 }
 
-build.mustRunAfter clean
 
-tasks.register("copyToLib") 
-tasks.register("stage")
-
-
-task stage() {
+tasks.register("copyToLib", Copy){
+    from(configurations.compile)
+    into "$buildDir/libs"
+} 
+tasks.register("stage") {
     dependsOn build, clean
 }
 
-task copyToLib(type: Copy) {
-    into "$buildDir/libs"
-    from(configurations.compile)
+tasks.register("cleanBuild") {
+    dependsOn 'clean'
+    dependsOn 'build'
+    tasks.findByName('build').mustRunAfter 'clean'
 }
 
 stage.dependsOn(copyToLib)
