@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
+    "java-library"
     idea
     kotlin("jvm") version libs.versions.kotlin.get() apply false
     kotlin("plugin.spring") version libs.versions.kotlin.get() apply false
