@@ -17,7 +17,7 @@ idea {
 
 
 tasks.register<Copy>("copyToLib"){
-    from(configurations.compileClasspath.get())
+    from(compileClasspath)
     into("$buildDir/libs")
 } 
 
