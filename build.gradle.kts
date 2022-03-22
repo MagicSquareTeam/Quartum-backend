@@ -15,7 +15,7 @@ idea {
 }
 
 
-tasks.register("copyToLib", type:Copy){
+tasks.register<Copy>("copyToLib"){
     from(configurations.compile)
     into("$buildDir/libs")
 } 
@@ -28,12 +28,12 @@ tasks.register("stage") {
 }
 
 
-gradle.taskGraph.whenReady {
-  taskGraph ->
-    if (taskGraph.hasTask(stage)) {
-      test.enabled = false
-    }
-}
+// gradle.taskGraph.whenReady {
+//   taskGraph ->
+//     if (taskGraph.hasTask(stage)) {
+//       test.enabled = false
+//     }
+// }
 
 allprojects{
     group = "magic-square"
