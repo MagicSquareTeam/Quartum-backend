@@ -16,8 +16,8 @@ idea {
 
 build.mustRunAfter clean
 
-task.register("copyToLib") 
-task.register("stage")
+tasks.register("copyToLib") 
+tasks.register("stage")
 
 
 task stage() {
