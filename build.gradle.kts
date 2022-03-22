@@ -1,9 +1,11 @@
+import org.gradle.kotlin.dsl.support.classPathBytesRepositoryFor
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     "java-library"
     idea
+    java
     kotlin("jvm") version libs.versions.kotlin.get() apply false
     kotlin("plugin.spring") version libs.versions.kotlin.get() apply false
 }
@@ -15,6 +17,18 @@ idea {
     }
 }
 
+//val someConfiguration by configurations.creating
+//
+//dependencies {
+//    // add a project dependency to the "someConfiguration" configuration
+//    someConfiguration(project(":lib"))
+//}
+
+//configurations {
+//    compileClasspath.extendsFrom(someConfiguration)
+//
+//    runtimeClasspath.extendsFrom(someConfiguration)
+//}
 
 tasks.register<Copy>("copyToLib"){
     from(configurations["compileClasspath"])
@@ -22,9 +36,9 @@ tasks.register<Copy>("copyToLib"){
 } 
 
 tasks.register("stage") {
-    dependsOn("copyToLib")
     dependsOn("clean")
     dependsOn("build")
+    dependsOn("copyToLib")
     tasks.findByName("build")?.mustRunAfter("clean")
 }
 
