@@ -17,14 +17,14 @@ idea {
 
 tasks.register("copyToLib", Copy){
     from(configurations.compile)
-    into "$buildDir/libs"
+    into("$buildDir/libs")
 } 
 
 tasks.register("stage") {
-    dependsOn "copyToLib"
-    dependsOn "clean"
-    dependsOn "build"
-    tasks.findByName("build").mustRunAfter "clean"
+    dependsOn("copyToLib")
+    dependsOn("clean")
+    dependsOn("build")
+    tasks.findByName("build").mustRunAfter("clean")
 }
 
 
