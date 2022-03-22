@@ -14,7 +14,29 @@ idea {
     }
 }
 
+build.mustRunAfter clean
 
+task.register("copyToLib") 
+task.register("stage")
+
+
+task stage() {
+    dependsOn build, clean
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from(configurations.compile)
+}
+
+stage.dependsOn(copyToLib)
+
+gradle.taskGraph.whenReady {
+  taskGraph ->
+    if (taskGraph.hasTask(stage)) {
+      test.enabled = false
+    }
+}
 
 allprojects{
     group = "magic-square"
