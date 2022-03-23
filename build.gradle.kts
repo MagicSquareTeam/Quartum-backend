@@ -19,7 +19,7 @@ tasks.register<Copy>("copyToLib") {
     from(configurations["compileClasspath"])
     into("$buildDir/libs")
     rename {
-        "quartum-backend"
+        "quartum-backend.jar"
     }
 }
 
