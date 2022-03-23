@@ -2,7 +2,7 @@
 plugins {
     `java-library`
     kotlin("jvm") version libs.versions.kotlin.get()
-    id("org.jlleitschuh.gradle.ktlint") version libs.versions.ktlintPlugin.get()
+//    id("org.jlleitschuh.gradle.ktlint") version libs.versions.ktlintPlugin.get()
 }
 
 java {
