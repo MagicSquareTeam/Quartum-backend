@@ -22,7 +22,7 @@ tasks.register<Copy>("copyToLib") {
 
 val jar by tasks.getting(Jar::class) {
     manifest {
-        attributes["Main-Class"] = "magicsquare.quartumbackend.QuartumBackendApplication"
+        attributes["Main-Class"] = "service.src.main.kotlin.magicsquare.quartumbackend.QuartumBackendApplication"
     }
     from(configurations.compileClasspath.get().map { if (it.isDirectory()) it else zipTree(it) })
 }
