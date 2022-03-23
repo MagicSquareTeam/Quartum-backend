@@ -24,6 +24,7 @@ val jar by tasks.getting(Jar::class) {
     manifest {
         attributes["Main-Class"] = "magicsquare.quartumbackend.QuartumBackendApplication"
     }
+    from(configurations.compileClasspath.get().map { if (it.isDirectory()) it else zipTree(it) })
 }
 
 tasks.register("stage") {
