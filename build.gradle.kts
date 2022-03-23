@@ -18,6 +18,7 @@ idea {
 tasks.register<Copy>("copyToLib"){
     from(configurations["compileClasspath"])
     into("$buildDir/libs")
+    rename(".*", "quartum-backend")
 } 
 
 tasks.register("stage") {
