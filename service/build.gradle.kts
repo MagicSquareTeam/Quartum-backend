@@ -30,6 +30,7 @@ dependencies {
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.postgresql)
     implementation(libs.mongo)
+    implementation(libs.bundles.persistence.pack)
 
     testImplementation(libs.bundles.kotest)
 }

@@ -7,6 +7,8 @@ ktlint = "0.42.1"
 kotlin = "1.6.10"
 jackson-module-kotlin = "2.12.4"
 jakarta-persistence = "3.0.0"
+javax-persistence-api = "2.2"
+hibernate-javax-persistence = "1.0.0.Final"
 gradle = "7.4"
 kotest = "5.0.1"
 kotest-extensions-spring = "1.1.0"
@@ -26,6 +28,8 @@ spring-boot-starter-tomcat = { module = "org.springframework.boot:spring-boot-st
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson-module-kotlin" }
 jakarta-persistence = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakarta-persistence" }
+javax-persistence-api = { module = "javax.persistence:javax.persistence-api", version.ref = "javax-persistence-api" }
+hibernate-javax-persistence = { module = "org.hibernate.javax.persistence:hibernate-jpa-2.1-api", version.ref = "hibernate-javax-persistence" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
@@ -41,7 +45,8 @@ mongo = { module = "org.springframework.boot:spring-boot-starter-data-mongodb", 
 spring-boot-starter = [ "spring-boot-starter-actuator", "spring-boot-starter-validation", "spring-boot-starter-web", "spring-boot-starter-data-jpa" ]
 kotlin = [ "jackson-module-kotlin", "kotlin-reflect", "kotlin-stdlib-jdk8" ]
 kotest = [ "spring-boot-starter-test", "kotest-runner-junit5", "kotest-assertions-core", "kotest-property", "kotest-extensions-spring", "mockk" ]
-postgresql = ["postgresql", "hikariCP", "jakarta-persistence" ]
+postgresql = [ "postgresql", "hikariCP",  ]
+persistence-pack = [ "jakarta-persistence", "javax-persistence-api", "hibernate-javax-persistence" ]
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
