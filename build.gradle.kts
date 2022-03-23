@@ -6,6 +6,7 @@ plugins {
     java
     kotlin("jvm") version libs.versions.kotlin.get() apply false
     kotlin("plugin.spring") version libs.versions.kotlin.get() apply false
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
@@ -17,11 +18,11 @@ idea {
     }
 }
 
-tasks.findByName("build")?.mustRunAfter("clean")
 
 tasks.register<Copy>("stage") {
     dependsOn("clean")
-    dependsOn("build")
+    dependsOn("shadowJar")
+    tasks.findByName("shadowJar")?.mustRunAfter("clean")
     val buildDir1 = project(":service").buildDir
     from("$buildDir1/libs/service-$version.jar")
     into("$buildDir/libs")
