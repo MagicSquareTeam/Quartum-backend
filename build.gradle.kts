@@ -8,6 +8,8 @@ plugins {
     kotlin("plugin.spring") version libs.versions.kotlin.get() apply false
 }
 
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+
 idea {
     project {
         jdkName = libs.versions.java.get()
@@ -15,25 +17,28 @@ idea {
     }
 }
 
-val jar by tasks.getting(Jar::class) {
-    manifest {
-        attributes["Main-Class"] = "magicsquare.quartumbackend.QuartumBackendApplicationKt"
-    }
-    from(configurations.compileClasspath.get().map { if (it.isDirectory()) it else zipTree(it) })
-}
-
 tasks.findByName("build")?.mustRunAfter("clean")
 
 tasks.register<Copy>("stage") {
     dependsOn("clean")
     dependsOn("build")
-    from(configurations["compileClasspath"])
+    val buildDir1 = project(":service").buildDir
+    from("$buildDir1/libs")
     into("$buildDir/libs")
+    rename {
+        "app.jar"
+    }
 }
 
 allprojects {
     group = "magic-square"
     version = "0.0.2-SNAPSHOT"
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
 }
 
 subprojects {

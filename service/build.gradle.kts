@@ -5,10 +5,17 @@ plugins {
     kotlin("jvm") version libs.versions.kotlin.get()
     kotlin("plugin.spring") version libs.versions.kotlin.get()
     id("org.jlleitschuh.gradle.ktlint") version libs.versions.ktlintPlugin.get()
+    application
 }
 
 java {
     withSourcesJar()
+}
+
+tasks.findByName("build")?.mustRunAfter("clean")
+
+application {
+    mainClass.set("magicsquare.quartumbackend.QuartumBackendApplicationKt")
 }
 
 tasks.withType<Test> {
