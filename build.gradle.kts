@@ -15,23 +15,20 @@ idea {
     }
 }
 
-tasks.register<Copy>("copyToLib") {
-    from(configurations["compileClasspath"])
-    into("$buildDir/libs")
-}
-
 val jar by tasks.getting(Jar::class) {
     manifest {
-        attributes["Main-Class"] = "service.src.main.kotlin.magicsquare.quartumbackend.QuartumBackendApplication"
+        attributes["Main-Class"] = "magicsquare.quartumbackend.QuartumBackendApplicationKt"
     }
     from(configurations.compileClasspath.get().map { if (it.isDirectory()) it else zipTree(it) })
 }
 
-tasks.register("stage") {
+tasks.findByName("build")?.mustRunAfter("clean")
+
+tasks.register<Copy>("stage") {
     dependsOn("clean")
     dependsOn("build")
-    dependsOn("copyToLib")
-    tasks.findByName("build")?.mustRunAfter("clean")
+    from(configurations["compileClasspath"])
+    into("$buildDir/libs")
 }
 
 allprojects {
