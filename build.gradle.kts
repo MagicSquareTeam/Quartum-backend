@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     idea
+    java
     kotlin("jvm") version libs.versions.kotlin.get() apply false
     kotlin("plugin.spring") version libs.versions.kotlin.get() apply false
 }
@@ -12,6 +13,18 @@ idea {
         jdkName = libs.versions.java.get()
         languageLevel = org.gradle.plugins.ide.idea.model.IdeaLanguageLevel(libs.versions.java.get())
     }
+}
+
+tasks.register<Copy>("copyToLib"){
+    from(configurations["compileClasspath"])
+    into("$buildDir/libs")
+} 
+
+tasks.register("stage") {
+    dependsOn("clean")
+    dependsOn("build")
+    dependsOn("copyToLib")
+    tasks.findByName("build")?.mustRunAfter("clean")
 }
 
 allprojects{
