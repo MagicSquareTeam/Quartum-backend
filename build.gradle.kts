@@ -23,7 +23,7 @@ tasks.register<Copy>("stage") {
     dependsOn("clean")
     dependsOn("build")
     val buildDir1 = project(":service").buildDir
-    from("$buildDir1/libs")
+    from("$buildDir1/libs/service-$version.jar")
     into("$buildDir/libs")
     rename {
         "app.jar"
