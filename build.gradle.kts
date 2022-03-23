@@ -20,6 +20,12 @@ tasks.register<Copy>("copyToLib") {
     into("$buildDir/libs")
 }
 
+val jar by tasks.getting(Jar::class) {
+    manifest {
+        attributes["Main-Class"] = "magicsquare.quartumbackend.QuartumBackendApplication"
+    }
+}
+
 tasks.register("stage") {
     dependsOn("clean")
     dependsOn("build")
