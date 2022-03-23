@@ -15,11 +15,13 @@ idea {
     }
 }
 
-tasks.register<Copy>("copyToLib"){
+tasks.register<Copy>("copyToLib") {
     from(configurations["compileClasspath"])
     into("$buildDir/libs")
-    rename(".*", "quartum-backend")
-} 
+    rename {
+        "quartum-backend"
+    }
+}
 
 tasks.register("stage") {
     dependsOn("clean")
@@ -28,7 +30,7 @@ tasks.register("stage") {
     tasks.findByName("build")?.mustRunAfter("clean")
 }
 
-allprojects{
+allprojects {
     group = "magic-square"
     version = "0.0.2-SNAPSHOT"
 }
