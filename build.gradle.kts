@@ -9,8 +9,6 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
-java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-
 idea {
     project {
         jdkName = libs.versions.java.get()
@@ -22,7 +20,7 @@ idea {
 tasks.register<Copy>("stage") {
     dependsOn("clean")
     dependsOn("shadowJar")
-    tasks.findByName("shadowJar")?.mustRunAfter("clean")
+//    tasks.findByName("shadowJar")?.mustRunAfter("clean")
     val buildDir1 = project(":service").buildDir
     from("$buildDir1/libs/service-$version.jar")
     into("$buildDir/libs")
