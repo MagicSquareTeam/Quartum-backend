@@ -6,6 +6,7 @@ plugins {
     java
     kotlin("jvm") version libs.versions.kotlin.get() apply false
     kotlin("plugin.spring") version libs.versions.kotlin.get() apply false
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 idea {
@@ -15,21 +16,26 @@ idea {
     }
 }
 
-tasks.register<Copy>("copyToLib"){
-    from(configurations["compileClasspath"])
-    into("$buildDir/libs")
-} 
-
-tasks.register("stage") {
-    dependsOn("clean")
-    dependsOn("build")
-    dependsOn("copyToLib")
-    tasks.findByName("build")?.mustRunAfter("clean")
+gradle.buildFinished{
+    copy{
+        val buildDir1 = project(":service").buildDir
+        from("$buildDir1/libs/service-$version.jar")
+        into("$buildDir/libs")
+        rename {
+            "app.jar"
+        }
+    }
 }
 
-allprojects{
+allprojects {
     group = "magic-square"
     version = "0.0.2-SNAPSHOT"
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
 }
 
 subprojects {
