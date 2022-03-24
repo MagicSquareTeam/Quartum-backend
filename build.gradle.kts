@@ -17,15 +17,26 @@ idea {
 }
 
 
-tasks.register<Copy>("stage") {
-    dependsOn("clean")
-    dependsOn("shadowJar")
-//    tasks.findByName("shadowJar")?.mustRunAfter("clean")
-    val buildDir1 = project(":service").buildDir
-    from("$buildDir1/libs/service-$version.jar")
-    into("test")
-    rename {
-        "app.jar"
+//tasks.register<Copy>("stage") {
+////    dependsOn("clean")
+////    dependsOn("build")
+////    dependsOn("shadowJar")
+//    val buildDir1 = project(":service").buildDir
+//    from("$buildDir1/libs/service-$version.jar")
+//    into("test")
+//    rename {
+//        "app.jar"
+//    }
+//}
+
+gradle.buildFinished{
+    copy{
+        val buildDir1 = project(":service").buildDir
+        from("$buildDir1/libs/service-$version.jar")
+        into("test")
+        rename {
+            "app.jar"
+        }
     }
 }
 
