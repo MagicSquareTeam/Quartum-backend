@@ -23,7 +23,7 @@ tasks.register<Copy>("stage") {
 //    tasks.findByName("shadowJar")?.mustRunAfter("clean")
     val buildDir1 = project(":service").buildDir
     from("$buildDir1/libs/service-$version.jar")
-    into("$buildDir/libs")
+    into("test")
     rename {
         "app.jar"
     }
