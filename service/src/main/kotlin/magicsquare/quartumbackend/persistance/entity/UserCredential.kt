@@ -19,7 +19,7 @@ open class UserCredential(
     open var email: String? = null,
 
     @Column(name = "password", nullable = false, length = 60)
-    open var password: String? = null,
+    open var password: CharArray? = null,
 
     @Column(name = "username", nullable = false, length = 40)
     open var username: String? = null,
