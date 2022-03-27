@@ -4,19 +4,20 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "tag")
-open class Tag {
+open class Tag (
     @Id
     @Column(name = "tag_id", nullable = false)
-    open var id: Int? = null
+    open var id: Int? = null,
 
     @Column(name = "name", nullable = false, length = 30)
-    open var name: String? = null
+    open var name: String? = null,
 
     @ManyToMany(mappedBy = "tags")
-    open var users: MutableSet<User> = mutableSetOf()
+    open var users: MutableSet<User> = mutableSetOf(),
 
     @OneToMany(mappedBy = "tag")
     open var articles: MutableSet<Article> = mutableSetOf()
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

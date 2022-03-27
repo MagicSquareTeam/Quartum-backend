@@ -5,42 +5,43 @@ import java.time.Instant
 
 @Entity
 @Table(
-    name = "\"user\"", indexes = [
+    name = "\"user\"",
+    indexes = [
         Index(name = "user_name_surname", columnList = "name, surname"),
     ]
 )
-open class User {
+open class User (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
-    open var id: Long? = null
+    open var id: Long? = null,
 
     @Column(name = "name", nullable = false, length = 50)
-    open var name: String? = null
+    open var name: String? = null,
 
     @Column(name = "surname", nullable = false, length = 50)
-    open var surname: String? = null
+    open var surname: String? = null,
 
     @Column(name = "patronymic", length = 50)
-    open var patronymic: String? = null
+    open var patronymic: String? = null,
 
     @Column(name = "birthday", nullable = false)
-    open var birthday: Instant? = null
+    open var birthday: Instant? = null,
 
     @Column(name = "profile_status")
-    open var profileStatus: String? = null
+    open var profileStatus: String? = null,
 
     @Column(name = "about_user")
-    open var aboutUser: String? = null
+    open var aboutUser: String? = null,
 
     @Column(name = "profile_photo_id")
-    open var profilePhotoId: Long? = null
+    open var profilePhotoId: Long? = null,
 
     @Column(name = "phone_number", length = 11)
-    open var phoneNumber: String? = null
+    open var phoneNumber: String? = null,
 
     @OneToOne(mappedBy = "user")
-    open lateinit var userCredentials: UserCredential
+    open var userCredentials: UserCredential? = null,
 
     @ManyToMany
     @JoinTable(
@@ -48,7 +49,7 @@ open class User {
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "role_id")]
     )
-    open var roles: MutableSet<Role> = mutableSetOf()
+    open var roles: MutableSet<Role> = mutableSetOf(),
 
     @ManyToMany
     @JoinTable(
@@ -56,10 +57,10 @@ open class User {
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "tag_id")]
     )
-    open var tags: MutableSet<Tag> = mutableSetOf()
+    open var tags: MutableSet<Tag> = mutableSetOf(),
 
     @OneToMany(mappedBy = "author")
-    open var articles: MutableSet<Article> = mutableSetOf()
+    open var articles: MutableSet<Article> = mutableSetOf(),
 
     @ManyToMany
     @JoinTable(
@@ -67,10 +68,10 @@ open class User {
         joinColumns = [JoinColumn(name = "author_id")],
         inverseJoinColumns = [JoinColumn(name = "article_id")]
     )
-    open var starred_articles: MutableSet<Article> = mutableSetOf()
+    open var starred_articles: MutableSet<Article> = mutableSetOf(),
 
     @OneToMany(mappedBy = "ratedUser")
-    open var articleRatings: MutableSet<ArticleRating> = mutableSetOf()
+    open var articleRatings: MutableSet<ArticleRating> = mutableSetOf(),
 
     @ManyToMany
     @JoinTable(
@@ -78,7 +79,7 @@ open class User {
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "user_subs_id")]
     )
-    open var users_subscribers: MutableSet<User> = mutableSetOf() //люди, которые подписаны на пользователя
+    open var users_subscribers: MutableSet<User> = mutableSetOf(),//люди, которые подписаны на пользователя
 
     @ManyToMany
     @JoinTable(
@@ -87,6 +88,8 @@ open class User {
         inverseJoinColumns = [JoinColumn(name = "user_id")]
     )
     open var users_subscriptions: MutableSet<User> = mutableSetOf()// люди на кого подписан наш пользователь
+) {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

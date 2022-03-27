@@ -4,17 +4,18 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "role")
-open class Role {
+open class Role(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id", nullable = false)
-    open var id: Int? = null
+    open var id: Int? = null,
 
     @Column(name = "role_name", length = 50)
-    open var roleName: String? = null
+    open var roleName: String? = null,
 
     @ManyToMany(mappedBy = "roles")
     open var users: MutableSet<User> = mutableSetOf()
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
