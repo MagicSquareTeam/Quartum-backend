@@ -2,6 +2,7 @@ package magicsquare.quartumbackend.persistance.entity
 
 import jakarta.persistence.*
 import java.time.Instant
+import java.time.LocalDateTime
 
 @Entity
 @Table(
@@ -26,7 +27,7 @@ open class User (
     open var patronymic: String? = null,
 
     @Column(name = "birthday", nullable = false)
-    open var birthday: Instant? = null,
+    open var birthday: LocalDateTime? = null,
 
     @Column(name = "profile_status")
     open var profileStatus: String? = null,

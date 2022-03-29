@@ -1,6 +1,7 @@
 package magicsquare.quartumbackend.dto
 
 import java.io.Serializable
+import java.time.LocalDateTime
 
 data class UserDto(
     val id: Long? = null,
