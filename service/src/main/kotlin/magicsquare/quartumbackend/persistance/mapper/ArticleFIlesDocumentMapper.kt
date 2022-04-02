@@ -2,8 +2,10 @@ package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.dto.DocumentDto
 import magicsquare.quartumbackend.persistance.document.ArticleFiles
+import org.springframework.stereotype.Component
 import java.time.Instant
 
+@Component
 class ArticleFIlesDocumentMapper : CommonMapper<DocumentDto, ArticleFiles> {
     override fun toDto(entity: ArticleFiles) = DocumentDto (
         name = entity.name,

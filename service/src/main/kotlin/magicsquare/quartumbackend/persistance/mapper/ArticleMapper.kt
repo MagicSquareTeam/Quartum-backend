@@ -2,8 +2,10 @@ package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.dto.ArticleDto
 import magicsquare.quartumbackend.persistance.entity.*
+import org.springframework.stereotype.Component
 import java.time.Instant
 
+@Component
 class ArticleMapper : CommonMapper<ArticleDto, Article> {
     override fun toDto(entity: Article) = ArticleDto(
         id = entity.id,

@@ -2,9 +2,11 @@ package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.dto.UserDto
 import magicsquare.quartumbackend.persistance.entity.*
+import org.springframework.stereotype.Component
 import java.time.Instant
 import java.time.LocalDateTime
 
+@Component
 class UserMapper : CommonMapper<UserDto, User> {
     override fun toDto(entity: User) = UserDto (
         id = entity.id,

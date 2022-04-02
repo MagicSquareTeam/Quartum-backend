@@ -4,7 +4,9 @@ import magicsquare.quartumbackend.dto.TagDto
 import magicsquare.quartumbackend.persistance.entity.Article
 import magicsquare.quartumbackend.persistance.entity.Tag
 import magicsquare.quartumbackend.persistance.entity.User
+import org.springframework.stereotype.Component
 
+@Component
 class TagMapper : CommonMapper<TagDto, Tag> {
     override fun toDto(entity: Tag) = TagDto (
         id = entity.id,

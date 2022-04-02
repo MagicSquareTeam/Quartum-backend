@@ -2,9 +2,11 @@ package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.dto.DocumentDto
 import magicsquare.quartumbackend.persistance.document.ProfilePhoto
+import org.springframework.stereotype.Component
 
 import java.time.Instant
 
+@Component
 class ProfilePhotoDocumentMapper : CommonMapper<DocumentDto, ProfilePhoto> {
     override fun toDto(entity: ProfilePhoto) = DocumentDto (
         name = entity.name,

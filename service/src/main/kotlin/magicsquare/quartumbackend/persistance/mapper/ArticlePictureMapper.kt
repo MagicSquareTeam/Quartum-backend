@@ -3,7 +3,9 @@ package magicsquare.quartumbackend.persistance.mapper
 import magicsquare.quartumbackend.dto.ArticlePictureDto
 import magicsquare.quartumbackend.persistance.entity.Article
 import magicsquare.quartumbackend.persistance.entity.ArticlePicture
+import org.springframework.stereotype.Component
 
+@Component
 class ArticlePictureMapper : CommonMapper <ArticlePictureDto, ArticlePicture> {
     override fun toDto(entity: ArticlePicture) = ArticlePictureDto (
         id = entity.id,

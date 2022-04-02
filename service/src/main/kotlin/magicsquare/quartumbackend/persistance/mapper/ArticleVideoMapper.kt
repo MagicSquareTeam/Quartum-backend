@@ -3,7 +3,9 @@ package magicsquare.quartumbackend.persistance.mapper
 import magicsquare.quartumbackend.dto.ArticleVideoDto
 import magicsquare.quartumbackend.persistance.entity.Article
 import magicsquare.quartumbackend.persistance.entity.ArticleVideo
+import org.springframework.stereotype.Component
 
+@Component
 class ArticleVideoMapper : CommonMapper <ArticleVideoDto, ArticleVideo> {
     override fun toDto(entity: ArticleVideo) = ArticleVideoDto (
         id = entity.id,

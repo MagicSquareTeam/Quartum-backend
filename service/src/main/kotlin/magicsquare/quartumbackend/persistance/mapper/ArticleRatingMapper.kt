@@ -1,9 +1,10 @@
 package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.dto.ArticleRatingDto
-import magicsquare.quartumbackend.persistance.entity.Article
 import magicsquare.quartumbackend.persistance.entity.ArticleRating
+import org.springframework.stereotype.Component
 
+@Component
 class ArticleRatingMapper: CommonMapper <ArticleRatingDto, ArticleRating> {
     override fun toDto(entity: ArticleRating) = ArticleRatingDto (
         id = entity.id,

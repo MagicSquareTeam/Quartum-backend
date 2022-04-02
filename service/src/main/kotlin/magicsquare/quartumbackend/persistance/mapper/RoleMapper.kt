@@ -3,7 +3,9 @@ package magicsquare.quartumbackend.persistance.mapper
 import magicsquare.quartumbackend.dto.RoleDto
 import magicsquare.quartumbackend.persistance.entity.Role
 import magicsquare.quartumbackend.persistance.entity.User
+import org.springframework.stereotype.Component
 
+@Component
 class RoleMapper : CommonMapper<RoleDto, Role> {
     override fun toDto(entity: Role) = RoleDto (
         id = entity.id,

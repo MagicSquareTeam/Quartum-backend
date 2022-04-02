@@ -3,7 +3,9 @@ package magicsquare.quartumbackend.persistance.mapper
 import magicsquare.quartumbackend.dto.ArticleFileDto
 import magicsquare.quartumbackend.persistance.entity.Article
 import magicsquare.quartumbackend.persistance.entity.ArticleFile
+import org.springframework.stereotype.Component
 
+@Component
 class ArticleFileMapper : CommonMapper <ArticleFileDto, ArticleFile> {
     override fun toDto(entity: ArticleFile) = ArticleFileDto (
         id = entity.id,
