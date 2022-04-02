@@ -12,4 +12,5 @@ java {
 dependencies {
     implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.boot.starter.validation)
+    implementation("org.springframework.boot:spring-boot-starter-security:2.5.6")
 }
