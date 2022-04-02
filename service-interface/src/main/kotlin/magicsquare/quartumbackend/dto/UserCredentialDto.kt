@@ -6,6 +6,6 @@ data class UserCredentialDto(
     val id: Long? = null,
     val userId: Long? = null,
     val email: String? = null,
-    val password: String? = null,
+    val password: CharArray? = null,
     val username: String? = null
 ) : Serializable

@@ -4,16 +4,17 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "article_files")
-open class ArticleFile {
+open class ArticleFile(
     @Id
-    open var id: Long? = null
+    open var id: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id")
-    open var article: Article? = null
+    open var article: Article? = null,
 
     @Column(name = "article_file_id", nullable = false)
     open var articleFileId: Long? = null
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
