@@ -38,6 +38,7 @@ dependencies {
     implementation(libs.bundles.postgresql)
     implementation(libs.mongo)
     implementation(libs.bundles.persistence.pack)
+    implementation(libs.bundles.logging)
     implementation(libs.jjwt)
 
     testImplementation(libs.bundles.kotest)

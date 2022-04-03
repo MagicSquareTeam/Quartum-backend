@@ -15,6 +15,8 @@ postgresql = "42.3.1"
 hikariCP = "5.0.0"
 mongodb = "2.6.4"
 jjwt="0.9.1"
+slf4j="1.7.36"
+ktlogging="2.1.20"
 
 [libraries]
 spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
@@ -37,13 +39,21 @@ postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" 
 hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikariCP" }
 mongo = { module = "org.springframework.boot:spring-boot-starter-data-mongodb", version.ref = "mongodb"}
 jjwt = {module = "io.jsonwebtoken:jjwt", version.ref = "jjwt"}
+slf4j = {module = "org.slf4j:slf4j-api", version.ref = "slf4j"}
+kotlin-logging-jvm = {module = "io.github.microutils:kotlin-logging-jvm", version.ref = "ktlogging"}
 
 [bundles]
-spring-boot-starter = [ "spring-boot-starter-actuator", "spring-boot-starter-validation", "spring-boot-starter-web", "spring-boot-starter-data-jpa", "spring-boot-starter-security" ]
+spring-boot-starter = [ "spring-boot-starter-actuator",
+                        "spring-boot-starter-validation",
+                        "spring-boot-starter-web",
+                        "spring-boot-starter-data-jpa",
+                        "spring-boot-starter-security",
+                        "spring-boot-configuration-processor" ]
 kotlin = [ "jackson-module-kotlin", "kotlin-reflect", "kotlin-stdlib-jdk8" ]
 kotest = [ "spring-boot-starter-test", "kotest-runner-junit5", "kotest-assertions-core", "kotest-property", "kotest-extensions-spring", "mockk" ]
 postgresql = [ "postgresql", "hikariCP",  ]
 persistence-pack = [ "javax-persistence-api"]
+logging = ["slf4j", "kotlin-logging-jvm"]
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
