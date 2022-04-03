@@ -3,7 +3,9 @@ package magicsquare.quartumbackend.persistance.mapper
 import magicsquare.quartumbackend.dto.UserCredentialDto
 import magicsquare.quartumbackend.persistance.entity.User
 import magicsquare.quartumbackend.persistance.entity.UserCredential
+import org.springframework.stereotype.Component
 
+@Component
 class UserCredentialsMapper : CommonMapper<UserCredentialDto ,UserCredential> {
     override fun toDto(entity: UserCredential) = UserCredentialDto (
         id = entity.id,

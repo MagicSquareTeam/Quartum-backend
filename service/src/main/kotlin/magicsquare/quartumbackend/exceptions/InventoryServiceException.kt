@@ -4,5 +4,5 @@ import org.springframework.http.HttpStatus
 
 data class InventoryServiceException(
     val errorMessage: String,
-    val httpStatus: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR
+    val httpStatus: HttpStatus = HttpStatus.NOT_FOUND
 ) : RuntimeException()
