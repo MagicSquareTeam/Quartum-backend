@@ -1,5 +1,6 @@
 package magicsquare.quartumbackend.persistance.entity
 
+import magicsquare.quartumbackend.persistance.enums.ERole
 import javax.persistence.*
 
 @Entity
@@ -11,7 +12,8 @@ open class Role(
     open var id: Int? = null,
 
     @Column(name = "role_name", length = 50)
-    open var roleName: String? = null,
+    @Enumerated(EnumType.STRING)
+    open var roleName: ERole? = null,
 
     @ManyToMany(mappedBy = "roles")
     open var users: MutableSet<User> = mutableSetOf()

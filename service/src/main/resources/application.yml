@@ -7,3 +7,8 @@ spring:
   data:
     mongodb:
       uri: ${spring.data.mongodb.uri}
+
+magicsquare:
+  quartum:
+    jwtSecret: ${magicsquare.quartum.jwtSecret}
+    jwtExpirationMs: 86400000

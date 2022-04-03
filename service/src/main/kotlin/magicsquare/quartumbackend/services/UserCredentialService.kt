@@ -1,4 +1,4 @@
-package magicsquare.quartumbackend.service
+package magicsquare.quartumbackend.services
 
 import magicsquare.quartumbackend.dto.UserCredentialDto
 import magicsquare.quartumbackend.exceptions.InventoryServiceException
@@ -12,11 +12,9 @@ class UserCredentialService(
     private val repository: UserCredentialRepository,
     val mapper: CommonMapper<UserCredentialDto, UserCredential>
 ) {
-    fun findByEmail(email: String): UserCredentialDto {
+    fun findByEmail(email: String): UserCredential {
         val userCredential = repository.findByEmail(email)
 
-        return userCredential?.let {
-            mapper.toDto(it)
-        } ?: throw InventoryServiceException("Credentials for $email not found")
+        return userCredential ?: throw InventoryServiceException("Credentials for $email not found")
     }
 }

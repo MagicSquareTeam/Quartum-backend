@@ -14,16 +14,16 @@ mockk = "1.12.0"
 postgresql = "42.3.1"
 hikariCP = "5.0.0"
 mongodb = "2.6.4"
+jjwt="0.9.1"
 
 [libraries]
 spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
 spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring-boot" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
 spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
-spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "spring-boot" }
 spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
-spring-boot-starter-tomcat = { module = "org.springframework.boot:spring-boot-starter-tomcat", version.ref = "spring-boot" }
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+spring-boot-starter-security = {module = "org.springframework.boot:spring-boot-starter-security", version.ref = "spring-boot"}
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson-module-kotlin" }
 javax-persistence-api = { module = "javax.persistence:javax.persistence-api", version.ref = "javax-persistence-api" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
@@ -36,9 +36,10 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikariCP" }
 mongo = { module = "org.springframework.boot:spring-boot-starter-data-mongodb", version.ref = "mongodb"}
+jjwt = {module = "io.jsonwebtoken:jjwt", version.ref = "jjwt"}
 
 [bundles]
-spring-boot-starter = [ "spring-boot-starter-actuator", "spring-boot-starter-validation", "spring-boot-starter-web", "spring-boot-starter-data-jpa" ]
+spring-boot-starter = [ "spring-boot-starter-actuator", "spring-boot-starter-validation", "spring-boot-starter-web", "spring-boot-starter-data-jpa", "spring-boot-starter-security" ]
 kotlin = [ "jackson-module-kotlin", "kotlin-reflect", "kotlin-stdlib-jdk8" ]
 kotest = [ "spring-boot-starter-test", "kotest-runner-junit5", "kotest-assertions-core", "kotest-property", "kotest-extensions-spring", "mockk" ]
 postgresql = [ "postgresql", "hikariCP",  ]
