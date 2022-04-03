@@ -1,7 +1,8 @@
 package magicsquare.quartumbackend.persistance.entity
 
-import jakarta.persistence.*
+
 import java.time.Instant
+import javax.persistence.*
 
 @Entity
 @Table(name = "article")

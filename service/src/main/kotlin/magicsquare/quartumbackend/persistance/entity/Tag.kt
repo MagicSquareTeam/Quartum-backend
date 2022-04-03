@@ -1,6 +1,6 @@
 package magicsquare.quartumbackend.persistance.entity
 
-import jakarta.persistence.*
+import javax.persistence.*
 
 @Entity
 @Table(name = "tag")
