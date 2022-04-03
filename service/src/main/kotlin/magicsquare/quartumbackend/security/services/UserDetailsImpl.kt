@@ -8,7 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 
-@Component
+
 class UserDetailsImpl(
     private val id: Long,
     private val email: String,
@@ -17,16 +17,18 @@ class UserDetailsImpl(
     private val authorities: MutableCollection<out GrantedAuthority>
 ) : UserDetails {
 
-    fun build(userCredential: UserCredential, roles: MutableSet<Role>): UserDetailsImpl{
-        val authorities = roles.stream()
-            .map { role -> SimpleGrantedAuthority(role.roleName!!.name) }
-            .toList()
-        return UserDetailsImpl(
-            userCredential.id!!,
-            userCredential.email!!,
-            userCredential.password!!,
-            authorities
-        )
+    companion object{
+        fun build(userCredential: UserCredential, roles: MutableSet<Role>): UserDetailsImpl{
+            val authorities = roles.stream()
+                .map { role -> SimpleGrantedAuthority(role.roleName!!.name) }
+                .toList()
+            return UserDetailsImpl(
+                userCredential.id!!,
+                userCredential.email!!,
+                userCredential.password!!,
+                authorities
+            )
+        }
     }
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> = authorities
@@ -42,6 +44,8 @@ class UserDetailsImpl(
     override fun isCredentialsNonExpired(): Boolean = true
 
     override fun isEnabled(): Boolean = true
+
+    fun getUserId(): Long = id
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

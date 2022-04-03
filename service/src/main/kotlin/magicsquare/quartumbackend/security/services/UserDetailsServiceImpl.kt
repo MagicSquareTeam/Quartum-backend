@@ -10,16 +10,15 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class UserDetailsServiceImpl (
     val userCredentialService: UserCredentialService,
-    val userService: UserService,
-    val userDetailsImpl: UserDetailsImpl
+    val userService: UserService
 ) : UserDetailsService {
 
     @Transactional
-    override fun loadUserByUsername(email: String): UserDetails? {
+    override fun loadUserByUsername(email: String): UserDetails {
         val credentials = userCredentialService.findByEmail(email)
 
         val users = userService.findById(credentials.id!!)
 
-        return userDetailsImpl.build(credentials, users.roles)
+        return UserDetailsImpl.build(credentials, users.roles)
     }
 }
