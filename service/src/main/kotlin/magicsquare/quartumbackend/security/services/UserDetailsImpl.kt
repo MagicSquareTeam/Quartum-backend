@@ -6,7 +6,6 @@ import magicsquare.quartumbackend.persistance.entity.UserCredential
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.stereotype.Component
 
 
 class UserDetailsImpl(

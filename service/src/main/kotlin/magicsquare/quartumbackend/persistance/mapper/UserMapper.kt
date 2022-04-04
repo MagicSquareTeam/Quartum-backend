@@ -2,7 +2,7 @@ package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.dto.UserDto
 import magicsquare.quartumbackend.persistance.entity.*
-import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 class UserMapper : CommonMapper<UserDto, User> {
@@ -31,7 +31,7 @@ class UserMapper : CommonMapper<UserDto, User> {
         entity.name = dto.name
         entity.surname = dto.surname
         entity.patronymic = dto.patronymic
-        entity.birthday = LocalDateTime.parse(dto.birthday)
+        entity.birthday = LocalDate.parse(dto.birthday)
         entity.profileStatus = dto.profileStatus
         entity.aboutUser =dto.aboutUser
         entity.profilePhotoId = dto.profilePhotoId
@@ -51,7 +51,7 @@ class UserMapper : CommonMapper<UserDto, User> {
         name = dto.name,
         surname = dto.surname,
         patronymic = dto.patronymic,
-        birthday = LocalDateTime.parse(dto.birthday),
+        birthday = LocalDate.parse(dto.birthday),
         profileStatus = dto.profileStatus,
         aboutUser =dto.aboutUser,
         profilePhotoId = dto.profilePhotoId,

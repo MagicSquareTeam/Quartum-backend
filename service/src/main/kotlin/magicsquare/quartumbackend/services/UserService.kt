@@ -14,4 +14,8 @@ class UserService (val repository: UserRepository) {
 
         return user ?: throw InventoryServiceException("Credentials for $id not found")
     }
+
+    fun save(user:User)  {
+        repository.save(user)
+    }
 }

@@ -7,7 +7,7 @@ import javax.persistence.*
 open class UserCredential(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id")
     open var id: Long? = null,
 
     @MapsId
@@ -24,6 +24,10 @@ open class UserCredential(
     @Column(name = "username", nullable = false, length = 40)
     open var username: String? = null,
 ) {
+
+    constructor(email: String, password: String) : this()
+
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -33,7 +37,7 @@ open class UserCredential(
         if (id != other.id) return false
         if (user != other.user) return false
         if (email != other.email) return false
-        if (password != other.password) return false
+        if (!password.contentEquals(other.password)) return false
         if (username != other.username) return false
 
         return true

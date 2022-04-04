@@ -16,11 +16,11 @@ class UserCredentialsMapper : CommonMapper<UserCredentialDto ,UserCredential> {
     )
 
     override fun update(dto: UserCredentialDto, entity: UserCredential) {
-        entity.id = entity.id
-        entity.user = User(entity.id)
-        entity.email = entity.email
-        entity.password = entity.password
-        entity.username = entity.username
+        entity.id = dto.id
+        entity.user = User(dto.id)
+        entity.email = dto.email
+        entity.password = dto.password
+        entity.username = dto.username
     }
 
     override fun toEntity(dto: UserCredentialDto) = UserCredential (

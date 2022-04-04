@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository
 interface UserCredentialRepository : JpaRepository<UserCredential, Long>{
 
     fun findByEmail(email: String) : UserCredential?
+
+    fun existsByEmail(email: String): Boolean
 }

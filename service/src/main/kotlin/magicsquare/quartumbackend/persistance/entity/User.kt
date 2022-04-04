@@ -2,6 +2,7 @@ package magicsquare.quartumbackend.persistance.entity
 
 import javax.persistence.*
 import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Entity
@@ -17,17 +18,14 @@ open class User (
     @Column(name = "user_id", nullable = false)
     open var id: Long? = null,
 
-    @Column(name = "name", nullable = false, length = 50)
-    open var name: String? = null,
+    @Column(name = "name", nullable = false, length = 50) var name: String? = null,
 
-    @Column(name = "surname", nullable = false, length = 50)
-    open var surname: String? = null,
+    @Column(name = "surname", nullable = false, length = 50) var surname: String? = null,
 
     @Column(name = "patronymic", length = 50)
     open var patronymic: String? = null,
 
-    @Column(name = "birthday", nullable = false)
-    open var birthday: LocalDateTime? = null,
+    @Column(name = "birthday", nullable = false) var birthday: LocalDate? = null,
 
     @Column(name = "profile_status")
     open var profileStatus: String? = null,
@@ -38,19 +36,16 @@ open class User (
     @Column(name = "profile_photo_id")
     open var profilePhotoId: Long? = null,
 
-    @Column(name = "phone_number", length = 11)
-    open var phoneNumber: String? = null,
+    @Column(name = "phone_number", length = 11) var phoneNumber: String? = null,
 
-    @OneToOne(mappedBy = "user")
-    open var userCredentials: UserCredential? = null,
+    @OneToOne(mappedBy = "user") var userCredentials: UserCredential? = null,
 
     @ManyToMany
     @JoinTable(
         name = "user_roles",
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "role_id")]
-    )
-    open var roles: MutableSet<Role> = mutableSetOf(),
+    ) var roles: MutableSet<Role> = mutableSetOf(),
 
     @ManyToMany
     @JoinTable(
@@ -90,6 +85,18 @@ open class User (
     )
     open var users_subscriptions: MutableSet<User> = mutableSetOf()// люди на кого подписан наш пользователь
 ) {
+
+    constructor(name: String,
+                surname: String,
+                phoneNumber: String,
+                birthday: LocalDate,
+                roles: MutableSet<Role>) : this(){
+         this.name = name
+        this.surname = surname
+        this.phoneNumber = phoneNumber
+        this.birthday = birthday
+        this.roles = roles
+   }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

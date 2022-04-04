@@ -17,4 +17,6 @@ class UserCredentialService(
 
         return userCredential ?: throw InventoryServiceException("Credentials for $email not found")
     }
+
+    fun existByEmail(email: String) = repository.existsByEmail(email)
 }
