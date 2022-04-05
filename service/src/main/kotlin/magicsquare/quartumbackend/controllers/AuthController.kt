@@ -95,9 +95,11 @@ class AuthController(
             signUpRequest.surname,
             signUpRequest.phoneNumber,
             LocalDate.parse(signUpRequest.birthday),
+            userCredential,
             roles
         )
-        userService.save(user)
+        userCredentialService.save(userCredential)
+//        userService.save(user)
         return ResponseEntity.ok<Any>("User registered successfully!")
     }
 }

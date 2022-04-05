@@ -19,4 +19,6 @@ class UserCredentialService(
     }
 
     fun existByEmail(email: String) = repository.existsByEmail(email)
+
+    fun save(userCredential: UserCredential) = repository.save(userCredential)
 }

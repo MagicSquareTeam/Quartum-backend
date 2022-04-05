@@ -10,23 +10,24 @@ open class UserCredential(
     @Column(name = "user_id")
     open var id: Long? = null,
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+//    @MapsId
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "userCredentials")
     open var user: User? = null,
 
-    @Column(name = "email", nullable = false, length = 60)
-    open var email: String? = null,
+    @Column(name = "email", nullable = false, length = 60) open var email: String? = null,
 
-    @Column(name = "password", nullable = false, length = 60)
-    open var password: CharArray? = null,
+    @Column(name = "password", nullable = false, length = 60) open var password: CharArray? = null,
 
-    @Column(name = "username", nullable = false, length = 40)
+    @Column(name = "username", length = 40)
     open var username: String? = null,
 ) {
 
-    constructor(email: String, password: String) : this()
-
+    constructor(email: String, password: String) : this(){
+        this.email = email
+        this.password = password.toCharArray()
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

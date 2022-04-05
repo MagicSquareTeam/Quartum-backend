@@ -25,7 +25,7 @@ open class User (
     @Column(name = "patronymic", length = 50)
     open var patronymic: String? = null,
 
-    @Column(name = "birthday", nullable = false) var birthday: LocalDate? = null,
+    @Column(name = "birthday", nullable = false) open var birthday: LocalDate? = null,
 
     @Column(name = "profile_status")
     open var profileStatus: String? = null,
@@ -38,7 +38,10 @@ open class User (
 
     @Column(name = "phone_number", length = 11) var phoneNumber: String? = null,
 
-    @OneToOne(mappedBy = "user") var userCredentials: UserCredential? = null,
+//    @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL])
+    @OneToOne(cascade = [CascadeType.ALL])
+    @PrimaryKeyJoinColumn
+    var userCredentials: UserCredential? = null,
 
     @ManyToMany
     @JoinTable(
@@ -90,11 +93,13 @@ open class User (
                 surname: String,
                 phoneNumber: String,
                 birthday: LocalDate,
+                userCredential: UserCredential,
                 roles: MutableSet<Role>) : this(){
          this.name = name
         this.surname = surname
         this.phoneNumber = phoneNumber
         this.birthday = birthday
+        this.userCredentials = userCredential
         this.roles = roles
    }
 
