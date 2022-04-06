@@ -9,5 +9,7 @@ interface UserCredentialRepository : JpaRepository<UserCredential, Long>{
 
     fun findByEmail(email: String) : UserCredential?
 
+    fun findByUsername(username: String): UserCredential?
+
     fun existsByEmail(email: String): Boolean
 }

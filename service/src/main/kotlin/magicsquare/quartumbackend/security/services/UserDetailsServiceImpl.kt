@@ -14,8 +14,8 @@ class UserDetailsServiceImpl (
 ) : UserDetailsService {
 
     @Transactional
-    override fun loadUserByUsername(email: String): UserDetails {
-        val credentials = userCredentialService.findByEmail(email)
+    override fun loadUserByUsername(username: String): UserDetails {
+        val credentials = userCredentialService.findByUsername(username)
 
         val users = userService.findById(credentials.id!!)
 

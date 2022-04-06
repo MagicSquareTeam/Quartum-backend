@@ -18,6 +18,12 @@ class UserCredentialService(
         return userCredential ?: throw InventoryServiceException("Credentials for $email not found")
     }
 
+    fun findByUsername(username: String): UserCredential {
+        val userCredential = repository.findByUsername(username)
+
+        return userCredential ?: throw InventoryServiceException("Credentials for $username not found")
+    }
+
     fun existByEmail(email: String) = repository.existsByEmail(email)
 
     fun save(userCredential: UserCredential) = repository.save(userCredential)

@@ -38,7 +38,7 @@ class AuthController(
     private val encoder: PasswordEncoder
 ) {
     @PostMapping("/signin")
-    fun authenticateUser(@Valid @RequestBody loginRequest: LoginRequest): ResponseEntity<*>? {
+    fun authenticateUser(@RequestBody loginRequest: @Valid LoginRequest): ResponseEntity<*>? {
         val authentication: Authentication = authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(loginRequest.username, loginRequest.password)
         )
@@ -103,7 +103,6 @@ class AuthController(
         user.userCredentials = userCredential
 
         userCredentialService.save(userCredential)
-//        userService.save(user)
 
         return ResponseEntity.ok<Any>("User registered successfully!")
     }
