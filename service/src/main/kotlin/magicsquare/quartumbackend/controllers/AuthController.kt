@@ -26,9 +26,9 @@ import java.util.stream.Collectors
 import javax.validation.Valid
 
 
-@CrossOrigin(origins = ["*"], maxAge = 3600)
+@CrossOrigin(maxAge = 3600)
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 class AuthController(
     private val authenticationManager: AuthenticationManager,
     private val userCredentialService: UserCredentialService,
@@ -68,6 +68,7 @@ class AuthController(
         }
         // Create new user's account
         val userCredential = UserCredential(
+            signUpRequest.username,
             signUpRequest.email,
             encoder.encode(signUpRequest.password)
         )
@@ -95,11 +96,15 @@ class AuthController(
             signUpRequest.surname,
             signUpRequest.phoneNumber,
             LocalDate.parse(signUpRequest.birthday),
-            userCredential,
             roles
         )
+
+        userCredential.user = user
+        user.userCredentials = userCredential
+
         userCredentialService.save(userCredential)
 //        userService.save(user)
+
         return ResponseEntity.ok<Any>("User registered successfully!")
     }
 }

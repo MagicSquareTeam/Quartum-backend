@@ -1,5 +1,6 @@
 package magicsquare.quartumbackend.persistance.entity
 
+import org.hibernate.annotations.GenericGenerator
 import javax.persistence.*
 import java.time.Instant
 import java.time.LocalDate
@@ -12,20 +13,25 @@ import java.time.LocalDateTime
         Index(name = "user_name_surname", columnList = "name, surname"),
     ]
 )
-open class User (
+open class User(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "gen")
+    @GenericGenerator(name="gen", strategy="foreign",
+        parameters=[org.hibernate.annotations.Parameter(name="property", value="userCredentials")])
     @Column(name = "user_id", nullable = false)
     open var id: Long? = null,
 
-    @Column(name = "name", nullable = false, length = 50) var name: String? = null,
+    @Column(name = "name", nullable = false, length = 50)
+    open var name: String? = null,
 
-    @Column(name = "surname", nullable = false, length = 50) var surname: String? = null,
+    @Column(name = "surname", nullable = false, length = 50)
+    open var surname: String? = null,
 
     @Column(name = "patronymic", length = 50)
     open var patronymic: String? = null,
 
-    @Column(name = "birthday", nullable = false) open var birthday: LocalDate? = null,
+    @Column(name = "birthday", nullable = false)
+    open var birthday: LocalDate? = null,
 
     @Column(name = "profile_status")
     open var profileStatus: String? = null,
@@ -36,19 +42,21 @@ open class User (
     @Column(name = "profile_photo_id")
     open var profilePhotoId: Long? = null,
 
-    @Column(name = "phone_number", length = 11) var phoneNumber: String? = null,
+    @Column(name = "phone_number", length = 11)
+    open var phoneNumber: String? = null,
 
 //    @OneToOne(mappedBy = "user", cascade = [CascadeType.ALL])
-    @OneToOne(cascade = [CascadeType.ALL])
+    @OneToOne
     @PrimaryKeyJoinColumn
-    var userCredentials: UserCredential? = null,
+    open var userCredentials: UserCredential? = null,
 
     @ManyToMany
     @JoinTable(
         name = "user_roles",
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "role_id")]
-    ) var roles: MutableSet<Role> = mutableSetOf(),
+    )
+    open var roles: MutableSet<Role> = mutableSetOf(),
 
     @ManyToMany
     @JoinTable(
@@ -89,19 +97,19 @@ open class User (
     open var users_subscriptions: MutableSet<User> = mutableSetOf()// люди на кого подписан наш пользователь
 ) {
 
-    constructor(name: String,
-                surname: String,
-                phoneNumber: String,
-                birthday: LocalDate,
-                userCredential: UserCredential,
-                roles: MutableSet<Role>) : this(){
-         this.name = name
+    constructor(
+        name: String,
+        surname: String,
+        phoneNumber: String,
+        birthday: LocalDate,
+        roles: MutableSet<Role>
+    ) : this() {
+        this.name = name
         this.surname = surname
         this.phoneNumber = phoneNumber
         this.birthday = birthday
-        this.userCredentials = userCredential
         this.roles = roles
-   }
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

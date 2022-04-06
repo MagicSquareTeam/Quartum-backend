@@ -34,7 +34,7 @@ open class Role(
     override fun hashCode(): Int {
         var result = id ?: 0
         result = 31 * result + (roleName?.hashCode() ?: 0)
-        result = 31 * result + users.hashCode()
+//        result = 31 * result + users.hashCode()
         return result
     }
 

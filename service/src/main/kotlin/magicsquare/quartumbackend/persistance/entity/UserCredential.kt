@@ -13,18 +13,21 @@ open class UserCredential(
 //    @MapsId
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id")
-    @OneToOne(mappedBy = "userCredentials")
+    @OneToOne(mappedBy = "userCredentials", cascade = [CascadeType.ALL])
     open var user: User? = null,
 
-    @Column(name = "email", nullable = false, length = 60) open var email: String? = null,
+    @Column(name = "email", nullable = false, length = 60)
+    open var email: String? = null,
 
-    @Column(name = "password", nullable = false, length = 60) open var password: CharArray? = null,
+    @Column(name = "password", nullable = false, length = 60)
+    open var password: CharArray? = null,
 
     @Column(name = "username", length = 40)
     open var username: String? = null,
 ) {
 
-    constructor(email: String, password: String) : this(){
+    constructor(username: String, email: String, password: String) : this(){
+        this.username = username
         this.email = email
         this.password = password.toCharArray()
     }
