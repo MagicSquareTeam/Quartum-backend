@@ -10,7 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails
 
 class UserDetailsImpl(
     private val id: Long,
-    private val email: String,
+    private val username: String,
+    val email: String,
     @JsonIgnore
     private val password: CharArray,
     private val authorities: MutableCollection<out GrantedAuthority>
@@ -23,6 +24,7 @@ class UserDetailsImpl(
                 .toList()
             return UserDetailsImpl(
                 userCredential.id!!,
+                userCredential.username!!,
                 userCredential.email!!,
                 userCredential.password!!,
                 authorities
@@ -34,7 +36,7 @@ class UserDetailsImpl(
 
     override fun getPassword(): String = String(password)
 
-    override fun getUsername(): String = email
+    override fun getUsername(): String = username
 
     override fun isAccountNonExpired(): Boolean = true
 

@@ -8,5 +8,6 @@ data class JwtResponse(
     @NotBlank val type: String = "Bearer",
     @NotBlank val userId: Long,
     @NotBlank val username: String,
+    @NotBlank val email: String,
     @NotBlank val roles: List<String>
 )

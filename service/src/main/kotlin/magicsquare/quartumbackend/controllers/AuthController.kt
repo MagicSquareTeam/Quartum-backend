@@ -54,6 +54,7 @@ class AuthController(
                 "Bearer",
                 userDetails.getUserId(),
                 userDetails.username,
+                userDetails.email,
                 roles
             )
         )
