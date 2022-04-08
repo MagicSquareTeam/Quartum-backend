@@ -1,5 +1,6 @@
 package magicsquare.quartumbackend.controllers
 
+import magicsquare.quartumbackend.exceptions.AuthException
 import magicsquare.quartumbackend.exceptions.ErrorResponse
 import magicsquare.quartumbackend.exceptions.InventoryServiceException
 import org.springframework.http.ResponseEntity
@@ -13,6 +14,14 @@ class ControllerAdvisor : ResponseEntityExceptionHandler() {
 
     @ExceptionHandler(InventoryServiceException::class)
     fun handleInventoryServiceException(ex: InventoryServiceException): ResponseEntity<Any> {
+        return ResponseEntity(
+            ErrorResponse(LocalDateTime.now(), ex::class.qualifiedName, ex.errorMessage),
+            ex.httpStatus
+        )
+    }
+
+    @ExceptionHandler(AuthException::class)
+    fun handleAuthException(ex: AuthException): ResponseEntity<Any> {
         return ResponseEntity(
             ErrorResponse(LocalDateTime.now(), ex::class.qualifiedName, ex.errorMessage),
             ex.httpStatus
