@@ -17,6 +17,7 @@ mongodb = "2.6.4"
 jjwt="0.9.1"
 slf4j="1.7.36"
 ktlogging="2.1.20"
+shadow="7.1.2"
 
 [libraries]
 spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
