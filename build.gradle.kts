@@ -39,6 +39,16 @@ idea {
     }
 }
 
+gradle.buildFinished{
+    copy{
+        from("$buildDir/libs/$name-$version.jar")
+        into("$buildDir/libs")
+        rename {
+            "app.jar"
+        }
+    }
+}
+
 tasks.wrapper {
     gradleVersion = libs.versions.gradle.get()
     distributionType = Wrapper.DistributionType.ALL
