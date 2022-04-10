@@ -27,7 +27,7 @@ class JwtUtils(
     }
 
     fun getUserNameFromJwtToken(token: String) : String {
-        return Jwts.parser().setSigningKey(properties.jwtSecret).parseClaimsJwt(token).body.subject
+        return Jwts.parser().setSigningKey(properties.jwtSecret).parseClaimsJws(token).body.subject
     }
 
     fun validateJwtToken(authToken: String): Boolean {

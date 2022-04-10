@@ -2,9 +2,27 @@ package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.web.dto.ArticleDto
 import magicsquare.quartumbackend.persistance.entity.*
+import magicsquare.quartumbackend.services.UserService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Bean
+import org.springframework.format.annotation.DateTimeFormat
+import org.springframework.stereotype.Component
 import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
+import java.time.temporal.ChronoField
 
-class ArticleMapper : CommonMapper<ArticleDto, Article> {
+@Component
+class ArticleMapper(
+    private val userService: UserService
+) : CommonMapper<ArticleDto, Article> {
+    private val formatter: DateTimeFormatter = DateTimeFormatterBuilder()
+        .appendPattern("yyyy-MM-dd")
+        .parseDefaulting(ChronoField.NANO_OF_DAY, 0)
+        .toFormatter()
+        .withZone(ZoneId.of("Europe/Paris"))
+
     override fun toDto(entity: Article) = ArticleDto(
         id = entity.id,
         authorId = entity.author!!.id,
@@ -29,33 +47,38 @@ class ArticleMapper : CommonMapper<ArticleDto, Article> {
         entity.rating = dto.rating
         entity.name = dto.name
         entity.text = dto.text
-        entity.creationDate = Instant.parse(dto.creationDate)
+        entity.creationDate = formatter.parse(dto.creationDate, Instant::from)
         entity.edited = dto.edited
-        entity.editTime = Instant.parse(dto.editTime)
+        entity.editTime = if (dto.edited == true) formatter.parse(dto.editTime, Instant::from) else null
         entity.tag = Tag(dto.tagId)
         entity.archived = dto.archived
-        entity.starred_users = dto.starred_userIds?.map {User(it)}!!.toMutableSet()
+        entity.starred_users = dto.starred_userIds?.map { User(it) }!!.toMutableSet()
         entity.articlePictures = dto.articlePictureIds?.map { ArticlePicture(it) }!!.toMutableSet()
         entity.articleVideos = dto.articleVideoIds?.map { ArticleVideo(it) }!!.toMutableSet()
         entity.articleRatings = dto.articleRatingIds?.map { ArticleRating(it) }!!.toMutableSet()
         entity.articleFiles = dto.articleFileIds?.map { ArticleFile(it) }!!.toMutableSet()
     }
 
-    override fun toEntity(dto: ArticleDto) = Article (
+    override fun toEntity(dto: ArticleDto) = Article(
         id = dto.id,
-        author = User(dto.authorId),
+        author = dto.authorId?.let { userService.findById(it) },
         rating = dto.rating,
         name = dto.name,
         text = dto.text,
-        creationDate = Instant.parse(dto.creationDate),
+        creationDate = formatter.parse(dto.creationDate, Instant::from),
         edited = dto.edited,
-        editTime = Instant.parse(dto.editTime),
+        editTime = if (dto.edited == true) formatter.parse(dto.editTime, Instant::from) else null,
         tag = Tag(dto.tagId),
         archived = dto.archived,
-        starred_users = dto.starred_userIds?.map {User(it)}!!.toMutableSet(),
-        articlePictures = dto.articlePictureIds?.map { ArticlePicture(it) }!!.toMutableSet(),
-        articleVideos = dto.articleVideoIds?.map { ArticleVideo(it) }!!.toMutableSet(),
-        articleRatings = dto.articleRatingIds?.map { ArticleRating(it) }!!.toMutableSet(),
-        articleFiles = dto.articleFileIds?.map { ArticleFile(it) }!!.toMutableSet()
+        starred_users = if (dto.starred_userIds != null) (dto.starred_userIds.map { User(it) }
+            .toMutableSet()) else mutableSetOf(),
+        articlePictures = if (dto.articlePictureIds != null) (dto.articlePictureIds.map { ArticlePicture(it) }
+            .toMutableSet()) else mutableSetOf(),
+        articleVideos = if (dto.articleVideoIds != null) (dto.articleVideoIds.map { ArticleVideo(it) }
+            .toMutableSet()) else mutableSetOf(),
+        articleRatings = if (dto.articleRatingIds != null) (dto.articleRatingIds.map { ArticleRating(it) }
+            .toMutableSet()) else mutableSetOf(),
+        articleFiles = if (dto.articleFileIds != null) (dto.articleFileIds.map { ArticleFile(it) }
+            .toMutableSet()) else mutableSetOf(),
     )
 }
