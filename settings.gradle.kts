@@ -6,4 +6,3 @@ pluginManagement {
 }
 
 rootProject.name = "quartum-backend"
-include("service", "service-interface")

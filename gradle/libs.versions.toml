@@ -6,9 +6,7 @@ ktlintPlugin = "10.2.0"
 ktlint = "0.42.1"
 kotlin = "1.6.10"
 jackson-module-kotlin = "2.12.4"
-jakarta-persistence = "3.0.0"
 javax-persistence-api = "2.2"
-hibernate-javax-persistence = "1.0.0.Final"
 gradle = "7.4"
 kotest = "5.0.1"
 kotest-extensions-spring = "1.1.0"
@@ -16,20 +14,21 @@ mockk = "1.12.0"
 postgresql = "42.3.1"
 hikariCP = "5.0.0"
 mongodb = "2.6.4"
+jjwt="0.9.1"
+slf4j="1.7.36"
+ktlogging="2.1.20"
+shadow="7.1.2"
 
 [libraries]
 spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
 spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring-boot" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
 spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
-spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "spring-boot" }
 spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
-spring-boot-starter-tomcat = { module = "org.springframework.boot:spring-boot-starter-tomcat", version.ref = "spring-boot" }
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+spring-boot-starter-security = {module = "org.springframework.boot:spring-boot-starter-security", version.ref = "spring-boot"}
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson-module-kotlin" }
-jakarta-persistence = { module = "jakarta.persistence:jakarta.persistence-api", version.ref = "jakarta-persistence" }
 javax-persistence-api = { module = "javax.persistence:javax.persistence-api", version.ref = "javax-persistence-api" }
-hibernate-javax-persistence = { module = "org.hibernate.javax.persistence:hibernate-jpa-2.1-api", version.ref = "hibernate-javax-persistence" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
@@ -40,13 +39,22 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 hikariCP = { module = "com.zaxxer:HikariCP", version.ref = "hikariCP" }
 mongo = { module = "org.springframework.boot:spring-boot-starter-data-mongodb", version.ref = "mongodb"}
+jjwt = {module = "io.jsonwebtoken:jjwt", version.ref = "jjwt"}
+slf4j = {module = "org.slf4j:slf4j-api", version.ref = "slf4j"}
+kotlin-logging-jvm = {module = "io.github.microutils:kotlin-logging-jvm", version.ref = "ktlogging"}
 
 [bundles]
-spring-boot-starter = [ "spring-boot-starter-actuator", "spring-boot-starter-validation", "spring-boot-starter-web", "spring-boot-starter-data-jpa" ]
+spring-boot-starter = [ "spring-boot-starter-actuator",
+                        "spring-boot-starter-validation",
+                        "spring-boot-starter-web",
+                        "spring-boot-starter-data-jpa",
+                        "spring-boot-starter-security",
+                        "spring-boot-configuration-processor" ]
 kotlin = [ "jackson-module-kotlin", "kotlin-reflect", "kotlin-stdlib-jdk8" ]
 kotest = [ "spring-boot-starter-test", "kotest-runner-junit5", "kotest-assertions-core", "kotest-property", "kotest-extensions-spring", "mockk" ]
 postgresql = [ "postgresql", "hikariCP",  ]
-persistence-pack = [ "jakarta-persistence", "javax-persistence-api", "hibernate-javax-persistence" ]
+persistence-pack = [ "javax-persistence-api"]
+logging = ["slf4j", "kotlin-logging-jvm"]
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

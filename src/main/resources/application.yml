@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: ${spring.datasourse.url}
+    username: ${spring.datasourse.username}
+    password: ${spring.datasourse.password}
+  data:
+    mongodb:
+      uri: ${spring.data.mongodb.uri}
+
+magicsquare:
+  quartum:
+    jwtSecret: ${magicsquare.quartum.jwtSecret}
+    jwtExpirationMs: 86400000
