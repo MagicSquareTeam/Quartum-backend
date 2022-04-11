@@ -12,10 +12,12 @@ class ArticleService(
     private val articleMapper: ArticleMapper,
     private val articleRepository: ArticleRepository
 ) {
-
-
     fun addNewArticle(articleDto: ArticleDto) {
         val article: Article = articleMapper.toEntity(articleDto)
         articleRepository.save(article)
+    }
+
+    fun findAll(): MutableSet<ArticleDto> {
+        return articleRepository.findAll().map { article -> articleMapper.toDto(article) }.toMutableSet()
     }
 }

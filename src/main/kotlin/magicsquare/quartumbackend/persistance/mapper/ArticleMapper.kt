@@ -3,9 +3,6 @@ package magicsquare.quartumbackend.persistance.mapper
 import magicsquare.quartumbackend.web.dto.ArticleDto
 import magicsquare.quartumbackend.persistance.entity.*
 import magicsquare.quartumbackend.services.UserService
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Bean
-import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.stereotype.Component
 import java.time.Instant
 import java.time.ZoneId
@@ -34,11 +31,14 @@ class ArticleMapper(
         editTime = entity.editTime.toString(),
         tagId = entity.tag?.id,
         archived = entity.archived,
-        starred_userIds = entity.starred_users.map { it.id!! },
-        articlePictureIds = entity.articlePictures.map { it.id!! },
-        articleVideoIds = entity.articleVideos.map { it.id!! },
-        articleRatingIds = entity.articleRatings.map { it.id!! },
-        articleFileIds = entity.articleFiles.map { it.id!! }
+        starred_userIds = if (entity.starred_users.size != 0) entity.starred_users.map { it.id!! } else listOf(),
+        articlePictureIds = if
+                (entity.articlePictures.size != 0)
+            entity.articlePictures.map { it.id!! }
+        else listOf(),
+        articleVideoIds = if (entity.articleVideos.size != 0) entity.articleVideos.map { it.id!! } else listOf(),
+        articleRatingIds = if (entity.articleRatings.size != 0) entity.articleRatings.map { it.id!! } else listOf(),
+        articleFileIds = if (entity.articleFiles.size != 0) entity.articleFiles.map { it.id!! } else listOf()
     )
 
     override fun update(dto: ArticleDto, entity: Article) {

@@ -48,7 +48,7 @@ class WebSecurityConfig(
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests().antMatchers("/api/auth/**").permitAll().and()
             .authorizeRequests().antMatchers("/api/articles/**").authenticated()
-            .antMatchers("/api/test/**").permitAll()
+            .antMatchers("/api/public/**").permitAll()
             .anyRequest().authenticated()
         http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter::class.java)
     }

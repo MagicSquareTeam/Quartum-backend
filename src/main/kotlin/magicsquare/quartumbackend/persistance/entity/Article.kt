@@ -6,7 +6,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "article")
-open class Article (
+open class Article(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_id", nullable = false)
@@ -55,7 +55,7 @@ open class Article (
 
     @OneToMany(mappedBy = "article")
     open var articleFiles: MutableSet<ArticleFile> = mutableSetOf()
-        ) {
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
