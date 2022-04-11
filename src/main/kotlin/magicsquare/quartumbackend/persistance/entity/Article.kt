@@ -83,14 +83,12 @@ open class Article(
 
     override fun hashCode(): Int {
         var result = id?.hashCode() ?: 0
-        result = 31 * result + (author?.hashCode() ?: 0)
         result = 31 * result + (rating ?: 0)
         result = 31 * result + (name?.hashCode() ?: 0)
         result = 31 * result + (text?.hashCode() ?: 0)
         result = 31 * result + (creationDate?.hashCode() ?: 0)
         result = 31 * result + (edited?.hashCode() ?: 0)
         result = 31 * result + (editTime?.hashCode() ?: 0)
-        result = 31 * result + (tag?.hashCode() ?: 0)
         result = 31 * result + (archived?.hashCode() ?: 0)
         result = 31 * result + starred_users.hashCode()
         result = 31 * result + articlePictures.hashCode()

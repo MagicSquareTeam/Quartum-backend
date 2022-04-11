@@ -1,5 +1,6 @@
 package magicsquare.quartumbackend.persistance.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.hibernate.annotations.GenericGenerator
 import javax.persistence.*
 import java.time.LocalDate
@@ -146,10 +147,8 @@ open class User(
         result = 31 * result + (aboutUser?.hashCode() ?: 0)
         result = 31 * result + (profilePhotoId?.hashCode() ?: 0)
         result = 31 * result + (phoneNumber?.hashCode() ?: 0)
-        result = 31 * result + userCredentials.hashCode()
         result = 31 * result + roles.hashCode()
         result = 31 * result + tags.hashCode()
-        result = 31 * result + articles.hashCode()
         result = 31 * result + starred_articles.hashCode()
         result = 31 * result + articleRatings.hashCode()
         result = 31 * result + users_subscribers.hashCode()

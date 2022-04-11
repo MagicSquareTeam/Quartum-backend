@@ -1,5 +1,6 @@
 package magicsquare.quartumbackend.persistance.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity
@@ -49,7 +50,6 @@ open class UserCredential(
 
     override fun hashCode(): Int {
         var result = id?.hashCode() ?: 0
-        result = 31 * result + (user?.hashCode() ?: 0)
         result = 31 * result + (email?.hashCode() ?: 0)
         result = 31 * result + (password?.hashCode() ?: 0)
         result = 31 * result + (username?.hashCode() ?: 0)

@@ -39,6 +39,4 @@ open class Tag (
         result = 31 * result + articles.hashCode()
         return result
     }
-
-
 }
