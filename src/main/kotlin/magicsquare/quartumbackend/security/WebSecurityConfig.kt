@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
@@ -22,7 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 class WebSecurityConfig(
     private val userDetailsService: UserDetailsServiceImpl,
-    private val unauthorizedHandler : AuthEntryPointJwt,
+    private val unauthorizedHandler: AuthEntryPointJwt,
     private val authTokenFilter: AuthTokenFilter
 ) : WebSecurityConfigurerAdapter() {
 
@@ -47,10 +48,9 @@ class WebSecurityConfig(
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests().antMatchers("/api/auth/**").permitAll().and()
-            .authorizeRequests().antMatchers("/api/articles/**").authenticated()
-            .antMatchers("/api/public/**").permitAll()
+            .authorizeRequests().antMatchers("/api/articles/**").authenticated().and()
+            .authorizeRequests().antMatchers("/api/public/**").permitAll()
             .anyRequest().authenticated()
         http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter::class.java)
     }
-
 }

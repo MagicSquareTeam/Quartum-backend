@@ -35,4 +35,10 @@ class ArticleController(
     fun getUserArticles(@PathVariable id: Long): MutableSet<ArticleDto> {
         return userService.getUserArticles(id).map { article -> articleMapper.toDto(article) }.toMutableSet()
     }
+
+    @PostMapping("/updateArticle")
+    fun updateArticle(@RequestBody articleDto: ArticleDto): ResponseEntity<*>{
+        articleService.updateArticle(articleDto)
+        return ResponseEntity.ok<Any>("Article updated successfully")
+    }
 }
