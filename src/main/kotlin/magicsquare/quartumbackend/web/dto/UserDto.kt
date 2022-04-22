@@ -2,6 +2,9 @@ package magicsquare.quartumbackend.web.dto
 
 import java.io.Serializable
 
+/**
+ * Модель DTO для пользователя
+ */
 data class UserDto(
     val id: Long? = null,
     val name: String? = null,

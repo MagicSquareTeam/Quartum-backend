@@ -7,7 +7,13 @@ import org.springframework.validation.annotation.Validated
 @Validated
 @ConstructorBinding
 @ConfigurationProperties(prefix = "magicsquare.quartum")
+/**
+ * Класс с параметрами приложения
+ */
 data class QuartumProperties(
+    /** Поле JWT Secret */
     val jwtSecret : String,
+
+    /** Поле длительности JWT */
     val jwtExpirationMs: Int
 )
