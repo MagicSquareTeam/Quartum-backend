@@ -5,6 +5,27 @@ import org.hibernate.annotations.GenericGenerator
 import javax.persistence.*
 import java.time.LocalDate
 
+/**
+ * User - модель представляет сущность пользователя
+ *
+ * @property id
+ * @property name
+ * @property surname
+ * @property patronymic
+ * @property birthday
+ * @property profileStatus
+ * @property aboutUser
+ * @property profilePhotoId
+ * @property phoneNumber
+ * @property userCredentials
+ * @property roles
+ * @property tags
+ * @property articles
+ * @property starred_articles
+ * @property articleRatings
+ * @property users_subscribers
+ * @property users_subscriptions
+ */
 @Entity
 @Table(
     name = "\"user\"",

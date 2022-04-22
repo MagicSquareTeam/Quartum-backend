@@ -4,6 +4,15 @@ import java.time.Instant
 
 import java.io.Serializable;
 
+/**
+ * Abstract document - общий класс для всех документов из MongoDB
+ *
+ * @property name
+ * @property description
+ * @property creationDate
+ * @property file
+ * @constructor осздаёт пустой Abstract document
+ */
 abstract class AbstractDocument(
     var name:  String? = null,
     var description: String? = null,

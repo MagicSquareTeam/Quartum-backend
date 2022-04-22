@@ -5,6 +5,10 @@ import magicsquare.quartumbackend.persistance.entity.User
 import magicsquare.quartumbackend.persistance.entity.UserCredential
 import org.springframework.stereotype.Component
 
+/**
+ * User credentials mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
 @Component
 class UserCredentialsMapper : CommonMapper<UserCredentialDto,UserCredential> {
     override fun toDto(entity: UserCredential) = UserCredentialDto (

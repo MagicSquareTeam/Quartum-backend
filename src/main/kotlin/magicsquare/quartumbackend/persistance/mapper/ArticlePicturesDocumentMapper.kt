@@ -4,6 +4,10 @@ import magicsquare.quartumbackend.web.dto.DocumentDto
 import magicsquare.quartumbackend.persistance.document.ArticlePictures
 import java.time.Instant
 
+/**
+ * Article pictures document mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
 class ArticlePicturesDocumentMapper : CommonMapper<DocumentDto, ArticlePictures> {
     override fun toDto(entity: ArticlePictures) = DocumentDto (
         name = entity.name,

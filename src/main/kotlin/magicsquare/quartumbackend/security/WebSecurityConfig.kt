@@ -18,6 +18,14 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 
+/**
+ * Web security config - конфигурация безопасности
+ *
+ * @property userDetailsService
+ * @property unauthorizedHandler
+ * @property authTokenFilter
+ * @constructor Создаёт пустую Web security config
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -37,11 +45,21 @@ class WebSecurityConfig(
         return super.authenticationManagerBean()
     }
 
+    /**
+     * Password encoder - отвечает за шифрование паролей
+     *
+     * @return зашифрованный пароль
+     */
     @Bean
     fun passwordEncoder(): PasswordEncoder? {
         return BCryptPasswordEncoder()
     }
 
+    /**
+     * Configure - метод отвечает за конфигурирования доступа к определённым маппингам системы
+     *
+     * @param http
+     */
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
         http.cors().and().csrf().disable()

@@ -5,6 +5,10 @@ import magicsquare.quartumbackend.persistance.entity.*
 import org.springframework.stereotype.Component
 import java.time.LocalDate
 
+/**
+ * User mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
 @Component
 class UserMapper : CommonMapper<UserDto, User> {
     override fun toDto(entity: User) = UserDto(

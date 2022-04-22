@@ -1,8 +1,16 @@
 package magicsquare.quartumbackend.persistance.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
+/**
+ * User credential - данные пользователя для входа
+ *
+ * @property id
+ * @property user
+ * @property email
+ * @property password
+ * @property username
+ */
 @Entity
 @Table(name = "user_credentials")
 open class UserCredential(

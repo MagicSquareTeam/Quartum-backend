@@ -6,6 +6,10 @@ import magicsquare.quartumbackend.persistance.entity.Tag
 import magicsquare.quartumbackend.persistance.entity.User
 import org.springframework.stereotype.Component
 
+/**
+ * Tag mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
 @Component
 class TagMapper : CommonMapper<TagDto, Tag> {
     override fun toDto(entity: Tag) = TagDto (

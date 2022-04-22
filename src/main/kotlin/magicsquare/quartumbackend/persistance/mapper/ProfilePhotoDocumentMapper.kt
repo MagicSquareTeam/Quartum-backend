@@ -5,6 +5,10 @@ import magicsquare.quartumbackend.persistance.document.ProfilePhoto
 
 import java.time.Instant
 
+/**
+ * Profile photo document mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
 class ProfilePhotoDocumentMapper : CommonMapper<DocumentDto, ProfilePhoto> {
     override fun toDto(entity: ProfilePhoto) = DocumentDto (
         name = entity.name,

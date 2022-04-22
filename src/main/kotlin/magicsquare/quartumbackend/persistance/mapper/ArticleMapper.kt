@@ -12,6 +12,11 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeFormatterBuilder
 
+/**
+ * Article mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ * @property tagRepository - репозиторий для поиска тега в БД
+ */
 @Component
 class ArticleMapper(
     private val tagRepository: TagRepository

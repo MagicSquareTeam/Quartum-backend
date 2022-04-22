@@ -2,6 +2,13 @@ package magicsquare.quartumbackend.persistance.entity
 
 import javax.persistence.*
 
+/**
+ * Article picture - изображении статьи, содержит id этого же объекта в mongo db
+ *
+ * @property id
+ * @property article
+ * @property articlePicturesId
+ */
 @Entity
 @Table(name = "article_pictures")
 open class ArticlePicture(

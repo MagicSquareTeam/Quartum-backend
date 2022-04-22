@@ -4,6 +4,25 @@ package magicsquare.quartumbackend.persistance.entity
 import java.time.Instant
 import javax.persistence.*
 
+/**
+ * Article - сущность статьи
+ *
+ * @property id
+ * @property author
+ * @property rating
+ * @property name
+ * @property text
+ * @property creationDate
+ * @property edited
+ * @property editTime
+ * @property tag
+ * @property archived
+ * @property starred_users
+ * @property articlePictures
+ * @property articleVideos
+ * @property articleRatings
+ * @property articleFiles
+ */
 @Entity
 @Table(name = "article")
 open class Article(

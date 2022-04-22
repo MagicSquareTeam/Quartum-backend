@@ -4,6 +4,10 @@ import magicsquare.quartumbackend.web.dto.ArticleVideoDto
 import magicsquare.quartumbackend.persistance.entity.Article
 import magicsquare.quartumbackend.persistance.entity.ArticleVideo
 
+/**
+ * Article video document mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
 class ArticleVideoDocumentMapper : CommonMapper <ArticleVideoDto, ArticleVideo> {
     override fun toDto(entity: ArticleVideo) = ArticleVideoDto (
         id = entity.id,

@@ -9,12 +9,24 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 
+/**
+ * Jwt utils - предоставляет методы для генерации, анализа, проверки JWT
+ *
+ * @property properties
+ * @constructor Create empty Jwt utils
+ */
 @Component
 class JwtUtils(
     private val properties: QuartumProperties,
 ) {
     private val logger = KotlinLogging.logger {}
 
+    /**
+     * Метод для генерации Jwt токена
+     *
+     * @param auth
+     * @return JWT токен
+     */
     fun generateJwtToken(auth: Authentication) : String{
         val userPrincipal = auth.principal as UserDetailsImpl
 
@@ -26,10 +38,22 @@ class JwtUtils(
             .compact()
     }
 
+    /**
+     * Получить имя пользователя из токена jwt
+     *
+     * @param token
+     * @return имя токена из jwt
+     */
     fun getUserNameFromJwtToken(token: String) : String {
         return Jwts.parser().setSigningKey(properties.jwtSecret).parseClaimsJws(token).body.subject
     }
 
+    /**
+     * Проверка токена jwt
+     *
+     * @param authToken
+     * @return true - если jwt токен проходит валидацию, иначе - false
+     */
     fun validateJwtToken(authToken: String): Boolean {
         try {
             Jwts.parser().setSigningKey(properties.jwtSecret).parseClaimsJws(authToken)

@@ -8,6 +8,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 
+/**
+ * User details impl - реализация UserDetails. Отвечает за получение данных о пользователях при аутентификации
+ *
+ * @property id
+ * @property username
+ * @property email
+ * @property password
+ * @property authorities
+ * @constructor Созда пустой Userdetailsimpl
+ */
 class UserDetailsImpl(
     private val id: Long,
     private val username: String,
@@ -17,6 +27,9 @@ class UserDetailsImpl(
     private val authorities: MutableCollection<out GrantedAuthority>
 ) : UserDetails {
 
+    /**
+     * Cоздаётся новый userDetailsImpl
+     */
     companion object{
         fun build(userCredential: UserCredential, roles: MutableSet<Role>): UserDetailsImpl{
             val authorities = roles.stream()
@@ -46,6 +59,11 @@ class UserDetailsImpl(
 
     override fun isEnabled(): Boolean = true
 
+    /**
+     * Метод получает идентификатор пользователя
+     *
+     * @return
+     */
     fun getUserId(): Long = id
 
     override fun equals(other: Any?): Boolean {
