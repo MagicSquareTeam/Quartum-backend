@@ -8,6 +8,7 @@ import java.io.Serializable
 data class ArticleDto(
     val id: Long? = null,
     val authorId: Long? = null,
+    val username: String? = null,
     val rating: Int? = null,
     val name: String? = null,
     val text: String? = null,

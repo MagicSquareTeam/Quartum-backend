@@ -2,6 +2,8 @@ package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.web.dto.ArticleDto
 import magicsquare.quartumbackend.persistance.entity.*
+import magicsquare.quartumbackend.persistance.repository.TagRepository
+import magicsquare.quartumbackend.persistance.repository.UserRepository
 import magicsquare.quartumbackend.services.TagService
 import magicsquare.quartumbackend.services.UserService
 import org.springframework.stereotype.Component
@@ -12,8 +14,7 @@ import java.time.format.DateTimeFormatterBuilder
 
 @Component
 class ArticleMapper(
-    private val userService: UserService,
-    private val tagService: TagService
+    private val tagRepository: TagRepository
 ) : CommonMapper<ArticleDto, Article> {
     private val formatter: DateTimeFormatter = DateTimeFormatterBuilder()
         .appendPattern("yyyy-MM-dd HH:mm")
@@ -23,6 +24,7 @@ class ArticleMapper(
     override fun toDto(entity: Article) = ArticleDto(
         id = entity.id,
         authorId = entity.author!!.id,
+        username = entity.author!!.userCredentials?.username,
         rating = entity.rating,
         name = entity.name,
         text = entity.text,
@@ -47,7 +49,7 @@ class ArticleMapper(
         entity.creationDate = formatter.parse(dto.creationDate, Instant::from)
         entity.edited = dto.edited
         entity.editTime = if (dto.edited == true) formatter.parse(dto.editTime, Instant::from) else null
-        entity.tag = dto.tagName?.let { tagService.getTagByName(it) }
+        entity.tag = dto.tagName?.let { tagRepository.findByName(it).get() }
         entity.archived = dto.archived
         entity.starred_users = dto.starred_userIds?.map { User(it) }!!.toMutableSet()
         entity.articlePictures = dto.articlePictureIds?.map { ArticlePicture(it) }!!.toMutableSet()
@@ -58,14 +60,14 @@ class ArticleMapper(
 
     override fun toEntity(dto: ArticleDto) = Article(
         id = dto.id,
-        author = dto.authorId?.let { userService.findById(it) },
+        author = User(dto.authorId),
         rating = dto.rating,
         name = dto.name,
         text = dto.text,
         creationDate = formatter.parse(dto.creationDate, Instant::from),
         edited = dto.edited,
         editTime = if (dto.edited == true) formatter.parse(dto.editTime, Instant::from) else null,
-        tag = dto.tagName?.let { tagService.getTagByName(it) },
+        tag = dto.tagName?.let { tagRepository.findByName(it).get() },
         archived = dto.archived,
         starred_users = if (dto.starred_userIds != null) (dto.starred_userIds.map { User(it) }
             .toMutableSet()) else mutableSetOf(),

@@ -15,8 +15,6 @@ data class UserDto(
     val aboutUser: String? = null,
     val profilePhotoId: Long? = null,
     val phoneNumber: String? = null,
-    val userCredentialsId: Long? = null,
-    val roleIds: List<Int>?,
     val tagIds: List<Int>?,
     val articleIds: List<Long>?,
     val starred_articleIds: List<Long>?,
