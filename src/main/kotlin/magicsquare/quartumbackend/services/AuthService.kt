@@ -77,7 +77,7 @@ class AuthService(
      */
     fun signUp(signupRequest: SignupRequest) {
         if (userCredentialService.existByEmail(signupRequest.email)) {
-            throw AuthException("Error: Username ${signupRequest.email} is already taken!", HttpStatus.BAD_REQUEST)
+            throw AuthException("Error: Username ${signupRequest.email} is already taken!", HttpStatus.UNPROCESSABLE_ENTITY)
         }
 
         val userCredential = UserCredential(
