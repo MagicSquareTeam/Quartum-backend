@@ -168,12 +168,6 @@ open class User(
         result = 31 * result + (aboutUser?.hashCode() ?: 0)
         result = 31 * result + (profilePhotoId?.hashCode() ?: 0)
         result = 31 * result + (phoneNumber?.hashCode() ?: 0)
-        result = 31 * result + roles.hashCode()
-        result = 31 * result + tags.hashCode()
-        result = 31 * result + starred_articles.hashCode()
-        result = 31 * result + articleRatings.hashCode()
-        result = 31 * result + users_subscribers.hashCode()
-        result = 31 * result + users_subscriptions.hashCode()
         return result
     }
 

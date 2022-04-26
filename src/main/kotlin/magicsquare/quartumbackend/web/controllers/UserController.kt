@@ -30,6 +30,11 @@ class UserController(
         return userService.getUserData(userId)
     }
 
+    @PostMapping("updateUserData")
+    fun saveUserData(dto: UserDto) {
+        return userService.save(dto)
+    }
+
     @GetMapping("/getSubsArticles/{userId}")
     fun getSubsArticles(@PathVariable userId: Long): MutableSet<ArticleDto> {
         return userService.getSubsArticles(userId)

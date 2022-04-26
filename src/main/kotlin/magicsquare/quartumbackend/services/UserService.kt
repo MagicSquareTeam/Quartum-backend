@@ -39,8 +39,8 @@ class UserService(
      * @return Boolean
      * @see UserRepository.save
      */
-    fun save(user: User) {
-        repository.save(user)
+    fun save(userDto: UserDto) {
+        repository.save(userMapper.toEntity(userDto))
     }
 
     /**
