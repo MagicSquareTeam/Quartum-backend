@@ -2,10 +2,7 @@ package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.web.dto.ArticleDto
 import magicsquare.quartumbackend.persistance.entity.*
-import magicsquare.quartumbackend.persistance.repository.TagRepository
-import magicsquare.quartumbackend.persistance.repository.UserRepository
-import magicsquare.quartumbackend.services.TagService
-import magicsquare.quartumbackend.services.UserService
+import magicsquare.quartumbackend.persistance.repository.jpa.TagRepository
 import org.springframework.stereotype.Component
 import java.time.Instant
 import java.time.ZoneOffset

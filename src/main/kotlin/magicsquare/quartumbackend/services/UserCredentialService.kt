@@ -4,7 +4,7 @@ import magicsquare.quartumbackend.web.dto.UserCredentialDto
 import magicsquare.quartumbackend.exceptions.InventoryServiceException
 import magicsquare.quartumbackend.persistance.entity.UserCredential
 import magicsquare.quartumbackend.persistance.mapper.CommonMapper
-import magicsquare.quartumbackend.persistance.repository.UserCredentialRepository
+import magicsquare.quartumbackend.persistance.repository.jpa.UserCredentialRepository
 import org.springframework.stereotype.Service
 
 @Service

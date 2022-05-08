@@ -3,7 +3,7 @@ package magicsquare.quartumbackend.services
 import magicsquare.quartumbackend.exceptions.InventoryServiceException
 import magicsquare.quartumbackend.persistance.entity.Role
 import magicsquare.quartumbackend.persistance.enums.ERole
-import magicsquare.quartumbackend.persistance.repository.RoleRepository
+import magicsquare.quartumbackend.persistance.repository.jpa.RoleRepository
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
 

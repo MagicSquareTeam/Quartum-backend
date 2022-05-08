@@ -1,9 +1,8 @@
 package magicsquare.quartumbackend.services
 
 import magicsquare.quartumbackend.exceptions.InventoryServiceException
-import magicsquare.quartumbackend.persistance.mapper.ArticlePicturesDocumentMapper
 import magicsquare.quartumbackend.persistance.mapper.ProfilePhotoDocumentMapper
-import magicsquare.quartumbackend.persistance.repository.ArticleProfilePhotoDocRepository
+import magicsquare.quartumbackend.persistance.repository.mongo.ArticleProfilePhotoDocRepository
 import magicsquare.quartumbackend.web.dto.DocumentDto
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service

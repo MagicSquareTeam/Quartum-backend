@@ -2,7 +2,7 @@ package magicsquare.quartumbackend.services
 
 import magicsquare.quartumbackend.persistance.entity.Tag
 import magicsquare.quartumbackend.persistance.mapper.TagMapper
-import magicsquare.quartumbackend.persistance.repository.TagRepository
+import magicsquare.quartumbackend.persistance.repository.jpa.TagRepository
 import magicsquare.quartumbackend.web.dto.TagDto
 import org.springframework.stereotype.Service
 

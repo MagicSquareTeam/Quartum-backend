@@ -1,4 +1,4 @@
-package magicsquare.quartumbackend.persistance.repository
+package magicsquare.quartumbackend.persistance.repository.jpa
 
 import magicsquare.quartumbackend.persistance.entity.Role
 import magicsquare.quartumbackend.persistance.enums.ERole

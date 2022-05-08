@@ -1,4 +1,4 @@
-package magicsquare.quartumbackend.persistance.repository
+package magicsquare.quartumbackend.persistance.repository.mongo
 
 import magicsquare.quartumbackend.persistance.document.ProfilePhoto
 import org.springframework.data.mongodb.repository.MongoRepository

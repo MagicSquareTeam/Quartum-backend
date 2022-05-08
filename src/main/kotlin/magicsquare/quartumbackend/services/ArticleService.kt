@@ -2,9 +2,8 @@ package magicsquare.quartumbackend.services
 
 import magicsquare.quartumbackend.persistance.entity.Article
 import magicsquare.quartumbackend.persistance.mapper.ArticleMapper
-import magicsquare.quartumbackend.persistance.repository.ArticleRepository
+import magicsquare.quartumbackend.persistance.repository.jpa.ArticleRepository
 import magicsquare.quartumbackend.web.dto.ArticleDto
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service

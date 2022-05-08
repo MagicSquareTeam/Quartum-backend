@@ -5,7 +5,7 @@ import magicsquare.quartumbackend.persistance.entity.Article
 import magicsquare.quartumbackend.persistance.entity.User
 import magicsquare.quartumbackend.persistance.mapper.ArticleMapper
 import magicsquare.quartumbackend.persistance.mapper.UserMapper
-import magicsquare.quartumbackend.persistance.repository.UserRepository
+import magicsquare.quartumbackend.persistance.repository.jpa.UserRepository
 import magicsquare.quartumbackend.web.dto.ArticleDto
 import magicsquare.quartumbackend.web.dto.UserDto
 import org.springframework.data.repository.findByIdOrNull
