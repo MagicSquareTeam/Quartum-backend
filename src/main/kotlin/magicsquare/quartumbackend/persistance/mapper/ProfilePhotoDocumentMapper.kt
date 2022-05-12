@@ -2,7 +2,11 @@ package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.web.dto.DocumentDto
 import magicsquare.quartumbackend.persistance.document.ProfilePhoto
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem
 import org.springframework.stereotype.Component
+import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.multipart.commons.CommonsMultipartFile
+import java.io.ByteArrayInputStream
 
 import java.time.Instant
 

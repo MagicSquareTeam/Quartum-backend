@@ -66,6 +66,8 @@ class WebSecurityConfig(
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests().antMatchers("/api/auth/**").permitAll().and()
+            // для тестов
+            .authorizeRequests().antMatchers("/api/media/**").permitAll().and()
             .authorizeRequests().antMatchers("/api/articles/**").authenticated().and()
             .authorizeRequests().antMatchers("/api/public/**").permitAll()
             .anyRequest().authenticated()
