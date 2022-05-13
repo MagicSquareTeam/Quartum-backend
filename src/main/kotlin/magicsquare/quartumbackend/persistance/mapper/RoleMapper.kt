@@ -5,6 +5,10 @@ import magicsquare.quartumbackend.persistance.entity.Role
 import magicsquare.quartumbackend.persistance.entity.User
 import magicsquare.quartumbackend.persistance.enums.ERole
 
+/**
+ * Role mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
 class RoleMapper : CommonMapper<RoleDto, Role> {
     override fun toDto(entity: Role) = RoleDto (
         id = entity.id,

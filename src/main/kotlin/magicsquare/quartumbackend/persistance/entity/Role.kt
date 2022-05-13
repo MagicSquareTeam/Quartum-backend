@@ -3,6 +3,13 @@ package magicsquare.quartumbackend.persistance.entity
 import magicsquare.quartumbackend.persistance.enums.ERole
 import javax.persistence.*
 
+/**
+ * Role - роль пользователя в системе
+ *
+ * @property id
+ * @property roleName
+ * @property users
+ */
 @Entity
 @Table(name = "role")
 open class Role(

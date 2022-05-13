@@ -4,7 +4,11 @@ import magicsquare.quartumbackend.web.dto.DocumentDto
 import magicsquare.quartumbackend.persistance.document.ArticleFiles
 import java.time.Instant
 
-class ArticleFIlesDocumentMapper : CommonMapper<DocumentDto, ArticleFiles> {
+/**
+ * Article files document mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
+class ArticleFilesDocumentMapper : CommonMapper<DocumentDto, ArticleFiles> {
     override fun toDto(entity: ArticleFiles) = DocumentDto (
         name = entity.name,
         description = entity.description,

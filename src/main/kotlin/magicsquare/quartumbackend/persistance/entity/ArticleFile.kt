@@ -2,6 +2,13 @@ package magicsquare.quartumbackend.persistance.entity
 
 import javax.persistence.*
 
+/**
+ * Article file - файл статьи, содержит id этого же объекта в mongo db
+ *
+ * @property id
+ * @property article
+ * @property articleFileId
+ */
 @Entity
 @Table(name = "article_files")
 open class ArticleFile(

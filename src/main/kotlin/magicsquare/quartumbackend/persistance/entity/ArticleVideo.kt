@@ -2,6 +2,13 @@ package magicsquare.quartumbackend.persistance.entity
 
 import javax.persistence.*
 
+/**
+ * Article video - видео статьи, содержит id этого же объекта в mongo db
+ *
+ * @property id
+ * @property article
+ * @property articleVideoId
+ */
 @Entity
 @Table(name = "article_videos")
 open class ArticleVideo (

@@ -2,6 +2,14 @@ package magicsquare.quartumbackend.persistance.entity
 
 import javax.persistence.*
 
+/**
+ * Article rating - рейтинг статьи
+ *
+ * @property id
+ * @property ratedUser
+ * @property article
+ * @property rating
+ */
 @Entity
 @Table(name = "article_rating")
 open class ArticleRating(

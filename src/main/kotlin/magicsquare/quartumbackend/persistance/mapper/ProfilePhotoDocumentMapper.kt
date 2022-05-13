@@ -2,9 +2,19 @@ package magicsquare.quartumbackend.persistance.mapper
 
 import magicsquare.quartumbackend.web.dto.DocumentDto
 import magicsquare.quartumbackend.persistance.document.ProfilePhoto
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem
+import org.springframework.stereotype.Component
+import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.multipart.commons.CommonsMultipartFile
+import java.io.ByteArrayInputStream
 
 import java.time.Instant
 
+/**
+ * Profile photo document mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
+@Component
 class ProfilePhotoDocumentMapper : CommonMapper<DocumentDto, ProfilePhoto> {
     override fun toDto(entity: ProfilePhoto) = DocumentDto (
         name = entity.name,

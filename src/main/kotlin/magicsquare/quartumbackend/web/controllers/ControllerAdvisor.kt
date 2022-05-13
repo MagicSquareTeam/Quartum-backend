@@ -10,8 +10,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.time.LocalDateTime
 
 @ControllerAdvice
+/**
+ * Класс для перехвата ошибок в контроллерах
+ */
 class ControllerAdvisor : ResponseEntityExceptionHandler() {
 
+    /**
+     * Метод обработки ошибок класса InventoryService
+     * @param ex Объект ошибки
+     * @return ResponseEntity с данными об ошибке
+     * @see InventoryServiceException
+     * @see ResponseEntity
+     */
     @ExceptionHandler(InventoryServiceException::class)
     fun handleInventoryServiceException(ex: InventoryServiceException): ResponseEntity<Any> {
         return ResponseEntity(
@@ -20,6 +30,13 @@ class ControllerAdvisor : ResponseEntityExceptionHandler() {
         )
     }
 
+    /**
+     * Метод обработки ошибок класса AuthException
+     * @param ex Объект ошибки
+     * @return ResponseEntity с данными об ошибке
+     * @see AuthException
+     * @see ResponseEntity
+     */
     @ExceptionHandler(AuthException::class)
     fun handleAuthException(ex: AuthException): ResponseEntity<Any> {
         return ResponseEntity(

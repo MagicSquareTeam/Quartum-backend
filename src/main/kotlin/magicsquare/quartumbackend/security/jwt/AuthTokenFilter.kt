@@ -11,8 +11,15 @@ import org.springframework.web.filter.OncePerRequestFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.springframework.util.StringUtils;
+import org.springframework.util.StringUtils
 
+/**
+ * Auth token filter - фильтрует входящий токен
+ *
+ * @property jwtUtils
+ * @property userDetailsService
+ * @constructor Создаёт пустой фильтр токенов аутентификации
+ */
 @Component
 class AuthTokenFilter (
     private val jwtUtils: JwtUtils,
@@ -21,6 +28,13 @@ class AuthTokenFilter (
 
     val logger = KotlinLogging.logger {}
 
+    /**
+     * Метод фильтрует фходящий токен. Проверяет на наличие правильных креденшиалсов в нём
+     *
+     * @param request
+     * @param response
+     * @param filterChain
+     */
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
@@ -43,6 +57,12 @@ class AuthTokenFilter (
         filterChain.doFilter(request, response)
     }
 
+    /**
+     * Метод осуществляет парсинг JWT токена
+     *
+     * @param request
+     * @return true - если токен не пустой и начинается с "Bearer ", иначе null
+     */
     private fun parseJwt(request: HttpServletRequest): String? {
         val headerAuth = request.getHeader("Authorization")
         return if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {

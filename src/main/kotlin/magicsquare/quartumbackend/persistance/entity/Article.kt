@@ -4,9 +4,28 @@ package magicsquare.quartumbackend.persistance.entity
 import java.time.Instant
 import javax.persistence.*
 
+/**
+ * Article - сущность статьи
+ *
+ * @property id
+ * @property author
+ * @property rating
+ * @property name
+ * @property text
+ * @property creationDate
+ * @property edited
+ * @property editTime
+ * @property tag
+ * @property archived
+ * @property starred_users
+ * @property articlePictures
+ * @property articleVideos
+ * @property articleRatings
+ * @property articleFiles
+ */
 @Entity
 @Table(name = "article")
-open class Article (
+open class Article(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_id", nullable = false)
@@ -55,7 +74,7 @@ open class Article (
 
     @OneToMany(mappedBy = "article")
     open var articleFiles: MutableSet<ArticleFile> = mutableSetOf()
-        ) {
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -83,14 +102,12 @@ open class Article (
 
     override fun hashCode(): Int {
         var result = id?.hashCode() ?: 0
-        result = 31 * result + (author?.hashCode() ?: 0)
         result = 31 * result + (rating ?: 0)
         result = 31 * result + (name?.hashCode() ?: 0)
         result = 31 * result + (text?.hashCode() ?: 0)
         result = 31 * result + (creationDate?.hashCode() ?: 0)
         result = 31 * result + (edited?.hashCode() ?: 0)
         result = 31 * result + (editTime?.hashCode() ?: 0)
-        result = 31 * result + (tag?.hashCode() ?: 0)
         result = 31 * result + (archived?.hashCode() ?: 0)
         result = 31 * result + starred_users.hashCode()
         result = 31 * result + articlePictures.hashCode()

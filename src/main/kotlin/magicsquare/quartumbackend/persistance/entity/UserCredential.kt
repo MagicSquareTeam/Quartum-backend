@@ -2,6 +2,15 @@ package magicsquare.quartumbackend.persistance.entity
 
 import javax.persistence.*
 
+/**
+ * User credential - данные пользователя для входа
+ *
+ * @property id
+ * @property user
+ * @property email
+ * @property password
+ * @property username
+ */
 @Entity
 @Table(name = "user_credentials")
 open class UserCredential(
@@ -49,7 +58,6 @@ open class UserCredential(
 
     override fun hashCode(): Int {
         var result = id?.hashCode() ?: 0
-        result = 31 * result + (user?.hashCode() ?: 0)
         result = 31 * result + (email?.hashCode() ?: 0)
         result = 31 * result + (password?.hashCode() ?: 0)
         result = 31 * result + (username?.hashCode() ?: 0)

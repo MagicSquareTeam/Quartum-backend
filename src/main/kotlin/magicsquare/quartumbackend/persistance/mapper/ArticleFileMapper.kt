@@ -4,6 +4,10 @@ import magicsquare.quartumbackend.web.dto.ArticleFileDto
 import magicsquare.quartumbackend.persistance.entity.Article
 import magicsquare.quartumbackend.persistance.entity.ArticleFile
 
+/**
+ * Article file mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
 class ArticleFileMapper : CommonMapper <ArticleFileDto, ArticleFile> {
     override fun toDto(entity: ArticleFile) = ArticleFileDto (
         id = entity.id,

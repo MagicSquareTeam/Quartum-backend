@@ -4,6 +4,10 @@ import magicsquare.quartumbackend.web.dto.ArticlePictureDto
 import magicsquare.quartumbackend.persistance.entity.Article
 import magicsquare.quartumbackend.persistance.entity.ArticlePicture
 
+/**
+ * Article picture mapper - маппер для преобразованя модели в dto и наоборот
+ *
+ */
 class ArticlePictureMapper : CommonMapper <ArticlePictureDto, ArticlePicture> {
     override fun toDto(entity: ArticlePicture) = ArticlePictureDto (
         id = entity.id,

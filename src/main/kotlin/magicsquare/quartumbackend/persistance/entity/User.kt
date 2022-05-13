@@ -1,9 +1,31 @@
 package magicsquare.quartumbackend.persistance.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.hibernate.annotations.GenericGenerator
 import javax.persistence.*
 import java.time.LocalDate
 
+/**
+ * User - модель представляет сущность пользователя
+ *
+ * @property id
+ * @property name
+ * @property surname
+ * @property patronymic
+ * @property birthday
+ * @property profileStatus
+ * @property aboutUser
+ * @property profilePhotoId
+ * @property phoneNumber
+ * @property userCredentials
+ * @property roles
+ * @property tags
+ * @property articles
+ * @property starred_articles
+ * @property articleRatings
+ * @property users_subscribers
+ * @property users_subscriptions
+ */
 @Entity
 @Table(
     name = "\"user\"",
@@ -146,14 +168,6 @@ open class User(
         result = 31 * result + (aboutUser?.hashCode() ?: 0)
         result = 31 * result + (profilePhotoId?.hashCode() ?: 0)
         result = 31 * result + (phoneNumber?.hashCode() ?: 0)
-        result = 31 * result + userCredentials.hashCode()
-        result = 31 * result + roles.hashCode()
-        result = 31 * result + tags.hashCode()
-        result = 31 * result + articles.hashCode()
-        result = 31 * result + starred_articles.hashCode()
-        result = 31 * result + articleRatings.hashCode()
-        result = 31 * result + users_subscribers.hashCode()
-        result = 31 * result + users_subscriptions.hashCode()
         return result
     }
 

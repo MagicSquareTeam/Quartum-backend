@@ -8,6 +8,7 @@ plugins {
     kotlin("plugin.spring") version libs.versions.kotlin.get()
     id("org.jlleitschuh.gradle.ktlint") version libs.versions.ktlintPlugin.get()
     id("com.github.johnrengelman.shadow") version libs.versions.shadow.get()
+    id("org.jetbrains.dokka") version libs.versions.dokka.get()
     application
 }
 
@@ -39,8 +40,8 @@ idea {
     }
 }
 
-gradle.buildFinished{
-    copy{
+gradle.buildFinished {
+    copy {
         from("$buildDir/libs/$name-$version.jar")
         into("$buildDir/libs")
         rename {

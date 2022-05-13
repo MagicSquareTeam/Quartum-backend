@@ -23,11 +23,19 @@ import java.util.function.Consumer
 import java.util.stream.Collectors
 
 @Service
+/**
+ * Класс сервиса для работы с аутентификацией
+ */
 class AuthService(
+    /** Поле менеджера аутентификаций */
     private val authenticationManager: AuthenticationManager,
+    /** Поле утилит JWT */
     private val jwtUtils: JwtUtils,
+    /** Поле сервиса для работы с данными пользователя */
     private val userCredentialService: UserCredentialService,
+    /** Поле сервиса для работы с ролями */
     private val roleService: RoleService,
+    /** Поле шифратора паролей */
     private val encoder: PasswordEncoder
 ) {
 
@@ -35,6 +43,13 @@ class AuthService(
         const val BEARER = "Bearer"
     }
 
+    /**
+     * Метод для регистрации нового пользователя
+     * @param loginRequest Модель с данными нового пользователя
+     * @return JWT Response с данными о пользователе и токеном
+     * @see LoginRequest
+     * @see JwtResponse
+     */
     fun signIn(loginRequest: LoginRequest): JwtResponse {
         val authentication: Authentication = authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(loginRequest.username, loginRequest.password)
@@ -55,9 +70,14 @@ class AuthService(
         )
     }
 
+    /**
+     * Метод для авторизации пользователя
+     * @param signupRequest Модель с данными для входа
+     * @see SignupRequest
+     */
     fun signUp(signupRequest: SignupRequest) {
         if (userCredentialService.existByEmail(signupRequest.email)) {
-            throw AuthException("Error: Username ${signupRequest.email} is already taken!", HttpStatus.BAD_REQUEST)
+            throw AuthException("Error: Username ${signupRequest.email} is already taken!", HttpStatus.UNPROCESSABLE_ENTITY)
         }
 
         val userCredential = UserCredential(

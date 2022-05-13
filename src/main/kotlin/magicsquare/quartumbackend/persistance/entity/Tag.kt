@@ -2,6 +2,14 @@ package magicsquare.quartumbackend.persistance.entity
 
 import javax.persistence.*
 
+/**
+ * Tag - тег статьи
+ *
+ * @property id
+ * @property name
+ * @property users
+ * @property articles
+ */
 @Entity
 @Table(name = "tag")
 open class Tag (
@@ -39,6 +47,4 @@ open class Tag (
         result = 31 * result + articles.hashCode()
         return result
     }
-
-
 }

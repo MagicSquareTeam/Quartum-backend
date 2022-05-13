@@ -7,11 +7,20 @@ import org.springframework.stereotype.Component
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+/**
+ * Auth entry point jwt
+ *
+ * @constructor Создаёт пустую точку входа для авторизации jwt
+ */
 @Component
 class AuthEntryPointJwt : AuthenticationEntryPoint {
 
     private val logger = KotlinLogging.logger {}
 
+    /**
+     * Этот метод будет срабатывать в любое время, когда не прошедший проверку подлинности пользователь
+     * запрашивает защищенный HTTP-ресурс, и возникает исключение AuthenticationException
+     */
     override fun commence(
         request: HttpServletRequest,
         response: HttpServletResponse,
